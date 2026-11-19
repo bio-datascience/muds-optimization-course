@@ -1,0 +1,25 @@
+{
+  "verified_transitions": {
+    "newton": 12,
+    "adam": 7680,
+    "bfgs": 20,
+    "sgd": 12800,
+    "adamw": 23040,
+    "gd": 338
+  },
+  "maximum_absolute_update_error": 7.327471962526033e-15,
+  "notation": {
+    "exact_gradient": "g_t = grad f(x_t)",
+    "stochastic_gradient": "hat g_t",
+    "hessian_approximation": "B_t",
+    "inverse_hessian_approximation": "A_t",
+    "adam_initialization": "m_-1=v_-1=0; moments m_t,v_t use hat g_t at x_t; exponent t+1"
+  },
+  "explicit_variants": [
+    "Newton Hessian shift and Armijo backtracking",
+    "BFGS Armijo backtracking with positive-curvature update safeguard",
+    "Demonstration learning rates differ from historical paper defaults and are displayed",
+    "AdamW decoupled decay, no decay term in moments"
+  ],
+  "result": "All stored derivative/stochastic animation updates agree with displayed equations after notation alignment."
+}

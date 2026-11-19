@@ -1,0 +1,73 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "domain": "offset",
+      "start": "boundary",
+      "initial": 181.34889757800974,
+      "final": 0.000013998476471891929,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "offset",
+      "start": "center",
+      "initial": 275.04391321673825,
+      "final": 1.3209271832048167e-7,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "offset",
+      "start": "original",
+      "initial": 592.373679641907,
+      "final": 0.0000014692610976262702,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "centered",
+      "start": "boundary",
+      "initial": 116.60478104935595,
+      "final": 0.00005785482063601211,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "centered",
+      "start": "center",
+      "initial": 0,
+      "final": 0,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "centered",
+      "start": "original",
+      "initial": 592.373679641907,
+      "final": 0.0000014692610976262702,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    }
+  ],
+  "numbers": [
+    {
+      "id": "part-5-page-010",
+      "number": "5.7"
+    },
+    {
+      "id": "part-5-animation-pgd",
+      "number": "5.8"
+    },
+    {
+      "id": "part-5-page-011",
+      "number": "5.9"
+    }
+  ]
+}

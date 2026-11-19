@@ -1,0 +1,73 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "domain": "offset",
+      "start": "boundary",
+      "initial": 181.34889757800974,
+      "final": 2.6455309295083307e-8,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "offset",
+      "start": "center",
+      "initial": 275.04391321673825,
+      "final": 0,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "offset",
+      "start": "original",
+      "initial": 592.373679641907,
+      "final": 2.080375631570848e-9,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "centered",
+      "start": "boundary",
+      "initial": 116.60478104935595,
+      "final": 2.1909510895061705e-23,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "centered",
+      "start": "center",
+      "initial": 0,
+      "final": 0,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "domain": "centered",
+      "start": "original",
+      "initial": 592.373679641907,
+      "final": 7.532059617158762e-24,
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0
+    }
+  ],
+  "numbers": [
+    {
+      "id": "part-5-frank-wolfe-formula",
+      "number": "5.9"
+    },
+    {
+      "id": "part-5-animation-fw",
+      "number": "5.10"
+    },
+    {
+      "id": "part-5-page-011",
+      "number": "5.11"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "checks": [
+    "Analytic derivatives vs finite differences",
+    "Descent for deterministic methods",
+    "BFGS positive definiteness and secant equation",
+    "AdamW lambda=0 equals Adam exactly",
+    "Shared stochastic sample streams",
+    "Newton solves SPD quadratic in one step"
+  ],
+  "runs": [
+    {
+      "landscape": "quadratic",
+      "method": "gd",
+      "steps": 320,
+      "initial": 592.373679641907,
+      "final": 1.4218003291409132e-08,
+      "best": 1.4218003291409132e-08
+    },
+    {
+      "landscape": "quadratic",
+      "method": "newton",
+      "steps": 1,
+      "initial": 592.373679641907,
+      "final": 1.1068616949613171e-28,
+      "best": 1.1068616949613171e-28
+    },
+    {
+      "landscape": "quadratic",
+      "method": "bfgs",
+      "steps": 9,
+      "initial": 592.373679641907,
+      "final": 4.31850775117895e-22,
+      "best": 4.31850775117895e-22
+    },
+    {
+      "landscape": "quadratic",
+      "method": "sgd",
+      "steps": 320,
+      "initial": 592.373679641907,
+      "final": 0.0096418641247927,
+      "best": 0.0052322012661763975
+    },
+    {
+      "landscape": "quadratic",
+      "method": "adam",
+      "steps": 320,
+      "initial": 592.373679641907,
+      "final": 0.17223888905246068,
+      "best": 0.17223888905246068
+    },
+    {
+      "landscape": "quadratic",
+      "method": "adamw",
+      "steps": 320,
+      "initial": 592.373679641907,
+      "final": 0.0038673488051372664,
+      "best": 0.0036412151315645654
+    },
+    {
+      "landscape": "rastrigin",
+      "method": "gd",
+      "steps": 10,
+      "initial": 52.5,
+      "final": 7.959662381108174,
+      "best": 7.959662381108174
+    },
+    {
+      "landscape": "rastrigin",
+      "method": "newton",
+      "steps": 1,
+      "initial": 52.5,
+      "final": 0.0,
+      "best": 0.0
+    },
+    {
+      "landscape": "rastrigin",
+      "method": "bfgs",
+      "steps": 1,
+      "initial": 52.5,
+      "final": 0.0,
+      "best": 0.0
+    },
+    {
+      "landscape": "rastrigin",
+      "method": "sgd",
+      "steps": 320,
+      "initial": 52.5,
+      "final": 7.962178680008687,
+      "best": 7.96216463038758
+    },
+    {
+      "landscape": "rastrigin",
+      "method": "adam",
+      "steps": 320,
+      "initial": 52.5,
+      "final": 7.960838554102057,
+      "best": 7.959669408266766
+    },
+    {
+      "landscape": "rastrigin",
+      "method": "adamw",
+      "steps": 320,
+      "initial": 52.5,
+      "final": 7.982656349669616,
+      "best": 7.959839035843746
+    }
+  ]
+}

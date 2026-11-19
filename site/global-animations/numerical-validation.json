@@ -1,0 +1,44 @@
+{
+  "checks": [
+    "DIRECT unit-box volume preserved",
+    "DIRECT all potentially-optimal rectangles selected using feasible positive slope intervals",
+    "DIRECT budget respected before each complete refinement round",
+    "GP interpolation at noiseless observations",
+    "EI maximizer on declared candidate grid after initial design",
+    "Best observed loss nonincreasing"
+  ],
+  "runs": [
+    {
+      "method": "direct",
+      "domain": "offset",
+      "frames": 8,
+      "evaluations": 47,
+      "initial": 275.0439132167382,
+      "best": 0.26241780000737286
+    },
+    {
+      "method": "bo",
+      "domain": "offset",
+      "frames": 33,
+      "evaluations": 33,
+      "initial": 275.0439132167382,
+      "best": 0.020729738853218854
+    },
+    {
+      "method": "direct",
+      "domain": "centered",
+      "frames": 5,
+      "evaluations": 57,
+      "initial": 0.0,
+      "best": 0.0
+    },
+    {
+      "method": "bo",
+      "domain": "centered",
+      "frames": 34,
+      "evaluations": 34,
+      "initial": 0.0,
+      "best": 0.0
+    }
+  ]
+}

@@ -1,0 +1,1042 @@
+[
+  {
+    "id": "part-1-rest-of-course",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "What we will cover in the rest of the course",
+    "method": "transition",
+    "plain": true
+  },
+  {
+    "id": "part-1-preview-blackbox-question",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Black-box optimization",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Only function values: where should we evaluate next?</div><div class=\"intro-preview-figure\"><svg viewBox=\"0 0 1024 660\" width=\"440\" height=\"300\" role=\"img\" aria-label=\"Input x enters the black box; its loss f(x) is returned\"><rect x=\"240\" y=\"225\" width=\"545\" height=\"278\" fill=\"black\"/><path d=\"M77 364H225\" stroke=\"black\" stroke-width=\"6\"/><path d=\"M220 345L250 364L220 383Z\"/><path d=\"M785 364H971\" stroke=\"black\" stroke-width=\"8\"/><path d=\"M966 343L1000 364L966 385Z\"/><text x=\"512\" y=\"376\" text-anchor=\"middle\" fill=\"white\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"48\">Black box</text><text x=\"110\" y=\"290\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"44\">Input</text><text x=\"890\" y=\"290\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"44\">Loss</text></svg><div style=\"text-align:center;font-size:24px\">\\(\\mathbf x\\longmapsto f(\\mathbf x)\\)</div></div><div class=\"intro-preview-copy\"><p>We can evaluate \\(f(\\mathbf x)\\), but have no derivatives.</p><p>Each evaluation may be expensive.</p></div><div class=\"intro-preview-caption\">The input–output view of the same objective.</div><div class=\"intro-preview-budget\" style=\"visibility:hidden\">Which evaluations are worth the remaining budget?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-blackbox-answer",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Black-box optimization",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Only function values: where should we evaluate next?</div><div class=\"intro-preview-figure\"><svg viewBox=\"0 0 1024 660\" width=\"440\" height=\"300\" role=\"img\" aria-label=\"Input x enters the black box; its loss f(x) is returned\"><rect x=\"240\" y=\"225\" width=\"545\" height=\"278\" fill=\"black\"/><path d=\"M77 364H225\" stroke=\"black\" stroke-width=\"6\"/><path d=\"M220 345L250 364L220 383Z\"/><path d=\"M785 364H971\" stroke=\"black\" stroke-width=\"8\"/><path d=\"M966 343L1000 364L966 385Z\"/><text x=\"512\" y=\"376\" text-anchor=\"middle\" fill=\"white\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"48\">Black box</text><text x=\"110\" y=\"290\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"44\">Input</text><text x=\"890\" y=\"290\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"44\">Loss</text></svg><div style=\"text-align:center;font-size:24px\">\\(\\mathbf x\\longmapsto f(\\mathbf x)\\)</div></div><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Sample points and compare their objective values.</li><li style=\"visibility:visible\">Use a fixed design, or let earlier results guide the next samples.</li><li style=\"visibility:hidden\">Repeat: propose, evaluate, select and adapt.</li></ul></div><div class=\"intro-preview-caption\">The input–output view of the same objective.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">Which evaluations are worth the remaining budget?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-blackbox-answer-reveal",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Black-box optimization",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Only function values: where should we evaluate next?</div><div class=\"intro-preview-figure\"><svg viewBox=\"0 0 1024 660\" width=\"440\" height=\"300\" role=\"img\" aria-label=\"Input x enters the black box; its loss f(x) is returned\"><rect x=\"240\" y=\"225\" width=\"545\" height=\"278\" fill=\"black\"/><path d=\"M77 364H225\" stroke=\"black\" stroke-width=\"6\"/><path d=\"M220 345L250 364L220 383Z\"/><path d=\"M785 364H971\" stroke=\"black\" stroke-width=\"8\"/><path d=\"M966 343L1000 364L966 385Z\"/><text x=\"512\" y=\"376\" text-anchor=\"middle\" fill=\"white\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"48\">Black box</text><text x=\"110\" y=\"290\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"44\">Input</text><text x=\"890\" y=\"290\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"44\">Loss</text></svg><div style=\"text-align:center;font-size:24px\">\\(\\mathbf x\\longmapsto f(\\mathbf x)\\)</div></div><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Sample points and compare their objective values.</li><li style=\"visibility:visible\">Use a fixed design, or let earlier results guide the next samples.</li><li style=\"visibility:visible\">Repeat: propose, evaluate, select and adapt.</li></ul></div><div class=\"intro-preview-caption\">The input–output view of the same objective.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">Which evaluations are worth the remaining budget?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-1-preview-gradients-question",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Gradients",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Now we have gradients. Does that make optimization easy?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/initial.png\" alt=\"Existing course example: initial\"/><div class=\"intro-preview-copy\"><p>The gradient describes the local slope.</p><p>A local direction alone does not tell us how far to move.</p></div><div class=\"intro-preview-caption\">Same rotated quadratic and starting point used later.</div><div class=\"intro-preview-budget\" style=\"visibility:hidden\">How much progress does one gradient evaluation buy?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-gradients-answer",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Gradients",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Now we have gradients. Does that make optimization easy?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/gradient.png\" alt=\"Existing course example: gradient\"/><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Move in a local descent direction.</li><li style=\"visibility:visible\">Choose a step size: too large can overshoot; too small can be slow.</li><li style=\"visibility:hidden\">Landscape geometry still matters: narrow valleys can slow progress.</li></ul></div><div class=\"intro-preview-caption\">Same rotated quadratic and starting point used later.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">How much progress does one gradient evaluation buy?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-gradients-answer-reveal",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Gradients",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Now we have gradients. Does that make optimization easy?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/gradient.png\" alt=\"Existing course example: gradient\"/><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Move in a local descent direction.</li><li style=\"visibility:visible\">Choose a step size: too large can overshoot; too small can be slow.</li><li style=\"visibility:visible\">Landscape geometry still matters: narrow valleys can slow progress.</li></ul></div><div class=\"intro-preview-caption\">Same rotated quadratic and starting point used later.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">How much progress does one gradient evaluation buy?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-1-preview-curvature-question",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Higher-order information",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Could curvature help us choose a better step?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/gradient.png\" alt=\"Existing course example: gradient\"/><div class=\"intro-preview-copy\"><p>The landscape may bend very differently in different directions.</p><p>Can local curvature tell us how to adjust the step?</p></div><div class=\"intro-preview-caption\">Same quadratic, same start; only the information changes.</div><div class=\"intro-preview-budget\" style=\"visibility:hidden\">Is the extra information worth its cost at dimension p?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-curvature-answer",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Higher-order information",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Could curvature help us choose a better step?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/curvature.png\" alt=\"Existing course example: curvature\"/><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Use curvature to adjust the direction and scale of a step.</li><li style=\"visibility:visible\">On this quadratic, exact curvature leads directly to the minimizer.</li><li style=\"visibility:hidden\">Obtaining, storing and using curvature can be expensive.</li></ul></div><div class=\"intro-preview-caption\">Same quadratic, same start; only the information changes.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">Is the extra information worth its cost at dimension p?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-curvature-answer-reveal",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Higher-order information",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">Could curvature help us choose a better step?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/curvature.png\" alt=\"Existing course example: curvature\"/><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Use curvature to adjust the direction and scale of a step.</li><li style=\"visibility:visible\">On this quadratic, exact curvature leads directly to the minimizer.</li><li style=\"visibility:visible\">Obtaining, storing and using curvature can be expensive.</li></ul></div><div class=\"intro-preview-caption\">Same quadratic, same start; only the information changes.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">Is the extra information worth its cost at dimension p?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-1-preview-constraints-question",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Constraints",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">What if a promising step leaves the feasible set?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/proposal.png\" alt=\"Existing course example: proposal\"/><div class=\"intro-preview-copy\"><p>The decision must lie in a feasible set \\(\\mathcal X\\).</p><p>A lower objective value is useful only if the decision is allowed.</p></div><div class=\"intro-preview-caption\">Original box-constrained example: proposal, then projection.</div><div class=\"intro-preview-budget\" style=\"visibility:hidden\">Which feasible operations are cheap for this problem?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-constraints-answer",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Constraints",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">What if a promising step leaves the feasible set?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/projected.png\" alt=\"Existing course example: projected\"/><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Take a tentative step and project it back into the feasible set.</li><li style=\"visibility:visible\">Or choose a direction and step that stay feasible.</li><li style=\"visibility:hidden\">The geometry and cost of the constraint operation matter.</li></ul></div><div class=\"intro-preview-caption\">Original box-constrained example: proposal, then projection.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">Which feasible operations are cheap for this problem?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-constraints-answer-reveal",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Constraints",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">What if a promising step leaves the feasible set?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/projected.png\" alt=\"Existing course example: projected\"/><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Take a tentative step and project it back into the feasible set.</li><li style=\"visibility:visible\">Or choose a direction and step that stay feasible.</li><li style=\"visibility:visible\">The geometry and cost of the constraint operation matter.</li></ul></div><div class=\"intro-preview-caption\">Original box-constrained example: proposal, then projection.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">Which feasible operations are cheap for this problem?</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. </aside>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-1-preview-scale-question",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Large-scale optimization",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">What if one full gradient is already too expensive?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/initial.png\" alt=\"Existing course example: initial\"/><div class=\"intro-preview-copy\"><p>In learning, one full gradient can require all \\(n\\) training examples.</p><p>Could we make useful progress with much less work per update?</p></div><div class=\"intro-preview-caption\">Illustrative noisy-gradient run on the same quadratic.</div><div class=\"intro-preview-budget\" style=\"visibility:hidden\">Optimize progress per unit of computation, not just per update.</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. The noisy run adds illustrative Gaussian noise to the gradient; it is not a recorded finite-sum training run.</aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-scale-answer",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Large-scale optimization",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">What if one full gradient is already too expensive?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/noisy.png\" alt=\"Existing course example: noisy\"/><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Estimate the gradient from a mini-batch.</li><li style=\"visibility:visible\">Use cheaper updates, accepting that their directions are noisy.</li><li style=\"visibility:hidden\">Balance progress, batch size, memory and total computation.</li></ul></div><div class=\"intro-preview-caption\">Illustrative noisy-gradient run on the same quadratic.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">Optimize progress per unit of computation, not just per update.</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. The noisy run adds illustrative Gaussian noise to the gradient; it is not a recorded finite-sum training run.</aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-preview-scale-answer-reveal",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Large-scale optimization",
+    "method": "intro-preview",
+    "layout": "intro-preview",
+    "html": "<style>.intro-preview{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.intro-preview-question{position:absolute;left:0;top:0;width:912px;height:84px;font-size:28px;line-height:1.35;text-align:center}.intro-preview-figure{position:absolute;left:0;top:108px;width:440px;height:365px;object-fit:contain}.intro-preview img.intro-preview-figure{width:440px!important;height:365px!important;max-width:440px!important;max-height:365px!important;margin:0!important;border:0!important;box-shadow:none!important;object-fit:contain!important}.intro-preview-copy{position:absolute;left:482px;top:120px;width:430px;font-size:24px;line-height:1.35}.intro-preview-copy p{margin:0 0 24px!important}.intro-preview-copy ul{margin:0!important;padding-left:30px!important}.intro-preview-copy li{margin:0 0 28px!important;font-size:24px!important;line-height:1.35!important}.intro-preview-caption{position:absolute;left:0;top:492px;width:440px;font-size:20px;line-height:1.3;color:#555;text-align:center}.intro-preview-budget{position:absolute;left:482px;top:482px;width:430px;font-size:20px;line-height:1.3;color:#555}</style><div class=\"intro-preview\"><div class=\"intro-preview-question\">What if one full gradient is already too expensive?</div><img class=\"intro-preview-figure\" src=\"../intro-short/assets/noisy.png\" alt=\"Existing course example: noisy\"/><div class=\"intro-preview-copy\"><ul><li style=\"visibility:visible\">Estimate the gradient from a mini-batch.</li><li style=\"visibility:visible\">Use cheaper updates, accepting that their directions are noisy.</li><li style=\"visibility:visible\">Balance progress, batch size, memory and total computation.</li></ul></div><div class=\"intro-preview-caption\">Illustrative noisy-gradient run on the same quadratic.</div><div class=\"intro-preview-budget\" style=\"visibility:visible\">Optimize progress per unit of computation, not just per update.</div></div><aside class=\"notes\">Introductory motivation only. Ask the question before revealing possible approaches. Detailed algorithms, update formulas and convergence guarantees belong in the later blocks. The noisy run adds illustrative Gaussian noise to the gradient; it is not a recorded finite-sum training run.</aside>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-3-animation-gd",
+    "part": 3,
+    "after": "part-3-page-008",
+    "title": "First-order optimization",
+    "method": "gd",
+    "src": "../gradient-animations/optimizer-demo.html?method=gd&v=lecture-noise-defaults&landscape=quadratic&noise=0",
+    "sameLogicalAsPrevious": true,
+    "html": "<ul style=\"position:absolute;left:8px;top:0;margin:0;padding-left:28px;font-size:24px;line-height:1.35\"><li style=\"margin:0 0 14px\">The gradient \\(\\nabla f(\\mathbf x)\\) is available.</li><li style=\"margin:0\">Assume \\(f\\) has an \\(L\\)-Lipschitz continuous gradient.</li></ul><div style=\"position:absolute;left:89px;top:110px;width:750px;height:480px;overflow:hidden\"><iframe src=\"../gradient-animations/optimizer-demo.html?method=gd&amp;v=below-bullets\" title=\"Gradient descent with selectable step size and loss scale\" style=\"display:block;width:1000px;height:640px;border:0;transform:scale(.75);transform-origin:top left\"></iframe></div>",
+    "layout": "gd-below-bullets",
+    "notes": " Lecture default: exact gradients in Chapter III; strong gradient noise on the quadratic in Chapter VI. Controls allow other noise levels and landscapes."
+  },
+  {
+    "id": "part-3-animation-newton",
+    "part": 3,
+    "after": "part-3-page-014",
+    "title": "Newton’s method",
+    "method": "newton"
+  },
+  {
+    "id": "part-3-inverse-updates",
+    "part": 3,
+    "after": "part-3-page-027",
+    "title": "Quasi-Newton updates: inverse Hessian",
+    "method": "quasi-newton-table",
+    "html": "<style>.qn-fixed{position:relative;width:912px;height:590px;font:24px/1.35 CourseSans,Avenir,Arial,sans-serif}.qn-fixed>.equation{position:absolute;left:0;top:0;width:912px;margin:0!important}.qn-fixed>p:first-of-type{position:absolute;left:0;top:65px;width:912px;margin:0!important;font-size:20px!important;line-height:1.3!important}.qn-fixed>div:nth-of-type(2){position:absolute;left:0;top:140px;width:912px;margin:0!important}.qn-fixed>div:nth-of-type(2)>div{height:78px!important;min-height:78px!important;box-sizing:border-box;grid-template-columns:145px 1fr!important;gap:18px!important}.qn-fixed>p:last-of-type{position:absolute;left:0;top:465px;width:912px;margin:0!important;font-size:20px!important;line-height:1.3!important}.qn-fixed>div:last-child{position:absolute;left:0;top:535px;width:912px;margin:0!important}</style><div class=\"qn-fixed\"><div class=\"equation\" style=\"font-size:24px\">\\[\\mathbf s_t=\\mathbf x_{t+1}-\\mathbf x_t,\\quad\\mathbf q_t=\\mathbf g_{t+1}-\\mathbf g_t,\\quad r=(\\mathbf q^\\top\\mathbf s)^{-1}.\\]</div><p style=\"font-size:20px\">Write \\(\\mathbf B,\\mathbf A,\\mathbf s,\\mathbf q\\) for the current quantities; \\(\\mathbf A\\) approximates the inverse Hessian. Suppress the step index in the updates below.</p><div style=\"margin-top:20px\"><div style=\"display:grid;grid-template-columns:145px 1fr;align-items:center;min-height:78px;border-top:1px solid #c9cfd2;gap:18px\"><div style=\"font-size:24px\">BFGS</div><div style=\"font-size:24px\">\\((\\mathbf I-r\\mathbf s\\mathbf q^\\top)\\mathbf A(\\mathbf I-r\\mathbf q\\mathbf s^\\top)+r\\mathbf s\\mathbf s^\\top\\)</div></div><div style=\"display:grid;grid-template-columns:145px 1fr;align-items:center;min-height:78px;border-top:1px solid #c9cfd2;gap:18px\"><div style=\"font-size:24px\">Broyden</div><div style=\"font-size:24px\">\\(\\mathbf A+\\frac{(\\mathbf s-\\mathbf A\\mathbf q)\\mathbf s^\\top\\mathbf A}{\\mathbf s^\\top\\mathbf A\\mathbf q}\\)</div></div><div style=\"display:grid;grid-template-columns:145px 1fr;align-items:center;min-height:78px;border-top:1px solid #c9cfd2;gap:18px\"><div style=\"font-size:24px\">DFP</div><div style=\"font-size:24px\">\\(\\mathbf A+\\frac{\\mathbf s\\mathbf s^\\top}{\\mathbf s^\\top\\mathbf q}-\\frac{\\mathbf A\\mathbf q\\mathbf q^\\top\\mathbf A}{\\mathbf q^\\top\\mathbf A\\mathbf q}\\)</div></div><div style=\"display:grid;grid-template-columns:145px 1fr;align-items:center;min-height:78px;border-top:1px solid #c9cfd2;gap:18px\"><div style=\"font-size:24px\">SR1</div><div style=\"font-size:24px\">\\(\\mathbf A+\\frac{(\\mathbf s-\\mathbf A\\mathbf q)(\\mathbf s-\\mathbf A\\mathbf q)^\\top}{(\\mathbf s-\\mathbf A\\mathbf q)^\\top\\mathbf q}\\)</div></div></div><p style=\"font-size:20px;margin-top:18px\">All denominators must be nonzero. BFGS preserves positive definiteness under the curvature condition \\(\\mathbf q^\\top\\mathbf s&gt;0\\); Broyden’s general rank-one update need not preserve symmetry.</p><div style=\"font-size:18px\">Symmetric Broyden class: \\(\\mathbf B_{t+1}=(1-\\phi_t)\\mathbf B_{t+1}^{\\mathrm{BFGS}}+\\phi_t\\mathbf B_{t+1}^{\\mathrm{DFP}},\\quad\\phi_t\\in[0,1]\\).</div></div>",
+    "layout": "qn-fixed"
+  },
+  {
+    "id": "part-3-animation-bfgs",
+    "part": 3,
+    "after": "part-3-page-027",
+    "title": "BFGS",
+    "method": "bfgs"
+  },
+  {
+    "id": "part-3-lbfgs-memory",
+    "title": "L-BFGS: limited memory",
+    "html": "<style>.lbfgs-copy{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;color:#444}.lbfgs-copy ul{margin:0!important;padding-left:28px!important;list-style-type:disc!important}.lbfgs-copy li{font-size:24px!important;line-height:1.35!important;margin:0 0 18px!important;padding:0!important}.lbfgs-copy li::marker{font-size:1em!important}</style><div class=\"lbfgs-copy\"><div style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif\"><ul><li>BFGS stores a dense \\(\\mathbf A_t\\in\\mathbb R^{p\\times p}\\): \\(O(p^2)\\) memory.</li><li>L-BFGS keeps only the latest \\(m\\) displacement–gradient pairs:</li></ul><div style=\"text-align:center;margin:24px 0;font-size:26px\">\\[\\mathbf s_i=\\mathbf x_{i+1}-\\mathbf x_i,\\qquad\\mathbf y_i=\\nabla f(\\mathbf x_{i+1})-\\nabla f(\\mathbf x_i).\\]</div><ul><li>Discard the oldest pair when the memory is full.</li><li>Compute \\(\\mathbf d_t=-\\mathbf A_t\\mathbf g_t\\) without forming \\(\\mathbf A_t\\).</li></ul><div style=\"margin-top:28px;padding:15px;border-top:1px solid #bac3c4;font-size:25px;text-align:center\">Storage and direction computation: \\(O(mp)\\), with \\(m\\ll p\\).</div><aside class=\"notes\">A_t is the inverse-Hessian approximation, consistent with the BFGS slides. Complexity excludes gradient evaluations and line search. Memory m counts correction pairs; p is parameter dimension.</aside></div></div>",
+    "part": 3,
+    "after": "part-3-page-027",
+    "method": "lbfgs",
+    "layout": "lbfgs"
+  },
+  {
+    "id": "part-3-lbfgs-recursion",
+    "title": "L-BFGS: a low-rank correction",
+    "html": "<style>.lbfgs-copy{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;color:#444}.lbfgs-copy ul{margin:0!important;padding-left:28px!important;list-style-type:disc!important}.lbfgs-copy li{font-size:24px!important;line-height:1.35!important;margin:0 0 18px!important;padding:0!important}.lbfgs-copy li::marker{font-size:1em!important}</style><div class=\"lbfgs-copy\"><ul style=\"font-size:24px;line-height:1.35;margin:0;padding-left:28px\"><li style=\"margin:0 0 15px\">Store the latest \\(m\\) pairs \\((\\mathbf s_i,\\mathbf y_i)\\).</li><li style=\"margin:0\">Approximate the inverse Hessian by a scaled identity plus a correction of rank at most \\(2m\\).</li></ul><svg viewBox=\"0 0 900 250\" width=\"900\" height=\"250\" role=\"img\" aria-label=\"Scaled identity plus a low rank correction represented by thin matrices\"><g font-family=\"Avenir,Arial,sans-serif\" font-size=\"25\" fill=\"#444\"><text x=\"10\" y=\"115\">Aₜ =</text><text x=\"239\" y=\"115\">+</text><text x=\"530\" y=\"115\">=</text></g><rect x=\"95\" y=\"35\" width=\"120\" height=\"120\" fill=\"#f4f5f5\" stroke=\"#9da9ac\"/><path d=\"M99 39L211 151\" stroke=\"#397fa3\" stroke-width=\"9\"/><rect x=\"285\" y=\"35\" width=\"30\" height=\"120\" fill=\"#c7dce5\" stroke=\"#397fa3\"/><rect x=\"345\" y=\"80\" width=\"30\" height=\"30\" fill=\"#eddbc4\" stroke=\"#b17b42\"/><rect x=\"405\" y=\"80\" width=\"120\" height=\"30\" fill=\"#c7dce5\" stroke=\"#397fa3\"/><rect x=\"590\" y=\"35\" width=\"120\" height=\"120\" fill=\"#eef4f6\" stroke=\"#397fa3\"/><path d=\"M594 39L706 151\" stroke=\"#397fa3\" stroke-width=\"7\"/><g font-family=\"Avenir,Arial,sans-serif\" font-size=\"21\" fill=\"#444\" text-anchor=\"middle\"><text x=\"155\" y=\"190\">δₜ I</text><text x=\"300\" y=\"190\">Uₜ</text><text x=\"360\" y=\"190\">Mₜ</text><text x=\"465\" y=\"190\">Uₜᵀ</text><text x=\"650\" y=\"190\">Aₜ</text><text x=\"155\" y=\"220\" font-size=\"17\">scaled identity</text><text x=\"400\" y=\"220\" font-size=\"17\">low-rank correction</text><text x=\"650\" y=\"220\" font-size=\"17\">implicit full matrix</text></g></svg><div style=\"font-size:23px;text-align:center;margin-top:0\">\\(\\mathbf A_t=\\delta_t\\mathbf I+\\mathbf U_t\\mathbf M_t\\mathbf U_t^\\top,\\qquad\\mathbf U_t\\in\\mathbb R^{p\\times r},\\quad r\\le2m.\\)</div><p style=\"font-size:23px;text-align:center;margin:20px 0 0\">Search direction: \\(\\mathbf d_t=-\\mathbf A_t\\mathbf g_t\\).<br>Storage and direction computation: \\(O(mp)\\).</p><p style=\"font-size:19px;color:#555;text-align:center;margin-top:14px\">Low-rank correction; generally full-rank \\(\\mathbf A_t\\).</p><aside class=\"notes\">Conceptual compact representation of inverse L-BFGS. With m retained BFGS corrections, the difference from the positive scaled identity has rank at most 2m, bounded also by p. U is built from retained displacement and gradient information; M is a small symmetric core and need not be positive definite by itself. The full approximation remains positive definite under the usual curvature conditions. Actual direction computation normally uses the two-loop recursion; no explicit U/M factorization is required. Full recursion preserved in the prior source checkpoint and work/add-lbfgs-slides.py.</aside></div>",
+    "part": 3,
+    "after": "part-3-page-027",
+    "method": "lbfgs",
+    "layout": "lbfgs"
+  },
+  {
+    "id": "part-3-lbfgs-practice",
+    "title": "L-BFGS in practice",
+    "html": "<style>.lbfgs-copy{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;color:#444}.lbfgs-copy ul{margin:0!important;padding-left:28px!important;list-style-type:disc!important}.lbfgs-copy li{font-size:24px!important;line-height:1.35!important;margin:0 0 18px!important;padding:0!important}.lbfgs-copy li::marker{font-size:1em!important}</style><div class=\"lbfgs-copy\"><div style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif\"><ul><li>Useful for large, smooth problems when gradients are reliable and a dense BFGS matrix is too expensive.</li><li>Choose the step length \\(\\eta_t\\) with a line search; Wolfe conditions support positive curvature pairs.</li><li>Skip or safeguard pairs when \\(\\mathbf s_i^\\top\\mathbf y_i\\le0\\).</li><li>Limited memory trades older curvature information for lower storage and computation.</li><li>For box constraints, use a suitable extension such as L-BFGS-B.</li></ul><p style=\"font-size:25px;text-align:center;margin-top:35px\">Curvature information from gradient differences.<br>Limited storage of the most recent correction pairs.</p><aside class=\"notes\">Classical deterministic L-BFGS is not automatically robust to noisy mini-batch curvature differences. L-BFGS-B is a distinct bound-constrained extension, not simple clipping of vanilla L-BFGS. No new trajectory is claimed here; the preceding animation remains full BFGS.</aside></div></div>",
+    "part": 3,
+    "after": "part-3-page-027",
+    "method": "lbfgs",
+    "layout": "lbfgs"
+  },
+  {
+    "id": "part-3-scientific-examples",
+    "part": 3,
+    "after": "part-3-page-027",
+    "title": "Newton, BFGS and L-BFGS in science",
+    "method": "applications",
+    "html": "<style>.science-table{width:100%;border-collapse:collapse;font:18px/1.28 CourseSans,Avenir,Arial,sans-serif}.science-table th,.science-table td{padding:11px 11px;text-align:left;vertical-align:top;border-bottom:1px solid #d7dddd}.science-table th{font-weight:500;background:#f2f5f5}.science-table td:first-child{width:22%;font-weight:500}.science-table th:not(:first-child){width:26%}</style><table class=\"science-table\"><thead><tr><th>Problem</th><th>Newton / Newton-type</th><th>BFGS</th><th>L-BFGS</th></tr></thead><tbody><tr><td>Likelihood fitting</td><td>Logistic regression: likelihood Hessian or score equations.</td><td>Smooth likelihoods with available gradients and costly Hessians.</td><td>Many coefficients; retain a short history of gradient differences.</td></tr><tr><td>Scientific parameter estimation</td><td>Model calibration with reliable second derivatives; Gauss–Newton for least squares.</td><td>Fit ODE or physical-model parameters without second derivatives.</td><td>Large inverse problems using adjoint gradients.</td></tr><tr><td>Molecular energy minimization</td><td>Refine structures near minima using energy curvature.</td><td>Learn curvature from energies and forces.</td><td>Relax large molecular systems with limited memory.</td></tr></tbody></table><p style=\"font-size:18px;line-height:1.3;margin:16px 0 0\">Newton also solves nonlinear equilibrium and discretized PDE equations, using the residual Jacobian rather than an objective Hessian.</p><p style=\"font-size:18px;line-height:1.3;color:#555;margin:12px 0 0\">Choose using derivative access, dimension and memory. For nonconvex objectives these are local methods; safeguards matter.</p><aside class=\"notes\">Examples illustrate suitable applications, not claims that every software package uses the same optimizer. Newton root finding solves J_R d = -R; optimization applies it to R = gradient f. Gauss–Newton approximates a nonlinear least-squares Hessian and is distinct from exact Newton. Large PDE problems often use matrix-free Newton–Krylov, so dense Newton storage is not universal.</aside>"
+  },
+  {
+    "id": "part-6-animation-sgd",
+    "part": 6,
+    "after": "part-6-page-013",
+    "title": "Stochastic gradient descent",
+    "method": "sgd"
+  },
+  {
+    "id": "part-6-animation-sgd-rastrigin",
+    "part": 6,
+    "after": "part-6-page-013",
+    "title": "SGD on noisy Rastrigin",
+    "method": "sgd",
+    "src": "../gradient-animations/optimizer-demo.html?method=sgd&landscape=rastrigin&noise=100&sgdRate=1&schedule=constant&v=lecture-noise-defaults",
+    "sameLogicalAsPrevious": true,
+    "notes": "Rastrigin exploration example: sigma100, eta1/L, batch1, seed3, constant step. Noise can cross basins; the global minimum is not guaranteed. Try Explore → settle to compare."
+  },
+  {
+    "id": "part-6-animation-cma-noisy",
+    "part": 6,
+    "after": "part-6-page-013",
+    "title": "CMA-ES with noisy evaluations",
+    "method": "sgd",
+    "src": "../gradient-animations/optimizer-demo.html?method=cma&landscape=rastrigin&noise=10&batch=8&seed=3&v=cma-noise1",
+    "sameLogicalAsPrevious": true,
+    "notes": "Function-evaluation noise is additive Gaussian with SD10 in objective units, unlike gradient noise in the SGD view. CMA-ES ranks averaged evaluations, batch8 per candidate, population12; full covariance and evolution paths. True f(mean) and diagnostic true best values are plotted but not used in selection. Robustness has limits and repeated evaluations cost budget."
+  },
+  {
+    "id": "part-6-animation-adam",
+    "part": 6,
+    "after": "part-6-page-020",
+    "title": "Adam",
+    "method": "adam"
+  },
+  {
+    "id": "part-6-adamw-change",
+    "part": 6,
+    "after": "part-6-page-039",
+    "title": "From Adam to AdamW",
+    "method": "adamw-change",
+    "html": "<div style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;color:#444\"><p style=\"margin:0 0 20px\">Keep Adam’s loss-gradient moments and bias correction:</p><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf a_t=\\frac{\\widehat{\\mathbf m}_t}{\\sqrt{\\widehat{\\mathbf v}_t}+\\epsilon_A}.\\]</div><div style=\"position:absolute;left:0;top:170px;width:912px\"><p style=\"font-size:24px;margin:0\">Adam</p><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf x_t=\\mathbf x_{t-1}-\\eta_t\\mathbf a_t.\\]</div></div><div style=\"position:absolute;left:0;top:310px;width:912px;visibility:hidden\"><p style=\"font-size:24px;margin:0\">AdamW also shrinks the previous parameters by \\(1-\\eta_t\\lambda_{\\rm wd}\\).</p></div><div style=\"position:absolute;left:0;top:390px;width:912px;visibility:hidden\"><div style=\"background:#fff0df;padding:4px 10px\"><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf x_t=(1-\\eta_t\\lambda_{\\rm wd})\\mathbf x_{t-1}-\\eta_t\\mathbf a_t.\\]</div></div><p style=\"font-size:24px;margin-top:22px\">The decay is separate from the adaptive gradient step.</p></div></div>",
+    "sameLogicalAsPrevious": false,
+    "notes": "Tutorial comparison: plain Adam versus AdamW. Both use only the sampled loss gradient in their moments. AdamW applies the separate factor 1-eta_t lambda_wd to previous parameters. Each column has its own optimizer state. Coupled L2 regularization is discussed in Fabian Schaipp’s linked blog, not in this tutorial comparison."
+  },
+  {
+    "id": "part-6-adamw-change-reveal-1",
+    "part": 6,
+    "after": "part-6-page-039",
+    "title": "From Adam to AdamW",
+    "method": "adamw-change",
+    "html": "<div style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;color:#444\"><p style=\"margin:0 0 20px\">Keep Adam’s loss-gradient moments and bias correction:</p><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf a_t=\\frac{\\widehat{\\mathbf m}_t}{\\sqrt{\\widehat{\\mathbf v}_t}+\\epsilon_A}.\\]</div><div style=\"position:absolute;left:0;top:170px;width:912px\"><p style=\"font-size:24px;margin:0\">Adam</p><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf x_t=\\mathbf x_{t-1}-\\eta_t\\mathbf a_t.\\]</div></div><div style=\"position:absolute;left:0;top:310px;width:912px;visibility:visible\"><p style=\"font-size:24px;margin:0\">AdamW also shrinks the previous parameters by \\(1-\\eta_t\\lambda_{\\rm wd}\\).</p></div><div style=\"position:absolute;left:0;top:390px;width:912px;visibility:hidden\"><div style=\"background:#fff0df;padding:4px 10px\"><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf x_t=(1-\\eta_t\\lambda_{\\rm wd})\\mathbf x_{t-1}-\\eta_t\\mathbf a_t.\\]</div></div><p style=\"font-size:24px;margin-top:22px\">The decay is separate from the adaptive gradient step.</p></div></div>",
+    "sameLogicalAsPrevious": true,
+    "notes": "Tutorial comparison: plain Adam versus AdamW. Both use only the sampled loss gradient in their moments. AdamW applies the separate factor 1-eta_t lambda_wd to previous parameters. Each column has its own optimizer state. Coupled L2 regularization is discussed in Fabian Schaipp’s linked blog, not in this tutorial comparison."
+  },
+  {
+    "id": "part-6-adamw-change-reveal-2",
+    "part": 6,
+    "after": "part-6-page-039",
+    "title": "From Adam to AdamW",
+    "method": "adamw-change",
+    "html": "<div style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;color:#444\"><p style=\"margin:0 0 20px\">Keep Adam’s loss-gradient moments and bias correction:</p><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf a_t=\\frac{\\widehat{\\mathbf m}_t}{\\sqrt{\\widehat{\\mathbf v}_t}+\\epsilon_A}.\\]</div><div style=\"position:absolute;left:0;top:170px;width:912px\"><p style=\"font-size:24px;margin:0\">Adam</p><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf x_t=\\mathbf x_{t-1}-\\eta_t\\mathbf a_t.\\]</div></div><div style=\"position:absolute;left:0;top:310px;width:912px;visibility:visible\"><p style=\"font-size:24px;margin:0\">AdamW also shrinks the previous parameters by \\(1-\\eta_t\\lambda_{\\rm wd}\\).</p></div><div style=\"position:absolute;left:0;top:390px;width:912px;visibility:visible\"><div style=\"background:#fff0df;padding:4px 10px\"><div style=\"font-size:27px;margin:24px 0\">\\[\\mathbf x_t=(1-\\eta_t\\lambda_{\\rm wd})\\mathbf x_{t-1}-\\eta_t\\mathbf a_t.\\]</div></div><p style=\"font-size:24px;margin-top:22px\">The decay is separate from the adaptive gradient step.</p></div></div>",
+    "sameLogicalAsPrevious": true,
+    "notes": "Tutorial comparison: plain Adam versus AdamW. Both use only the sampled loss gradient in their moments. AdamW applies the separate factor 1-eta_t lambda_wd to previous parameters. Each column has its own optimizer state. Coupled L2 regularization is discussed in Fabian Schaipp’s linked blog, not in this tutorial comparison."
+  },
+  {
+    "id": "part-6-adamw-recursion",
+    "part": 6,
+    "after": "part-6-page-039",
+    "title": "Adam and AdamW: the recursions",
+    "method": "adamw-recursion",
+    "html": "<style>.adamw-recursion{font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;color:#444}.adamw-recursion>p{font-size:22px;margin:0 0 22px}.recursion-grid{display:grid;grid-template-columns:441px 441px;gap:30px}.recursion-heading{font-size:24px;margin:0 0 18px;min-height:34px}.recursion-math{font-size:20px;height:64px;display:flex;align-items:center;justify-content:center}.recursion-math mjx-container[display=\"true\"]{margin:0!important}.recursion-update{height:105px;background:#fff0df;margin:10px 0 14px;display:flex;align-items:center;justify-content:center}.recursion-update .recursion-math{height:auto}.recursion-note{font-size:20px;line-height:1.35;margin:0}</style><div class=\"adamw-recursion\"><p>In each column, \\(\\mathbf g_t=\\widehat{\\nabla f}(\\mathbf x_{t-1})\\). Start with zero moments; \\(t\\ge1\\).</p><div class=\"recursion-grid\"><div><p class=\"recursion-heading\">Adam</p><div class=\"recursion-math\">\\[\\mathbf g_t=\\widehat{\\nabla f}(\\mathbf x_{t-1})\\]</div><div class=\"recursion-math\">\\[\\mathbf m_t=\\beta_1\\mathbf m_{t-1}+(1-\\beta_1)\\mathbf g_t\\]</div><div class=\"recursion-math\">\\[\\mathbf v_t=\\beta_2\\mathbf v_{t-1}+(1-\\beta_2)\\mathbf g_t^{\\odot2}\\]</div><div class=\"recursion-math\">\\[\\widehat{\\mathbf m}_t=\\frac{\\mathbf m_t}{1-\\beta_1^t},\\qquad\\widehat{\\mathbf v}_t=\\frac{\\mathbf v_t}{1-\\beta_2^t}\\]</div><div class=\"recursion-update\"><div class=\"recursion-math\">\\[\\mathbf x_t=\\mathbf x_{t-1}-\\eta_t\\frac{\\widehat{\\mathbf m}_t}{\\sqrt{\\widehat{\\mathbf v}_t}+\\epsilon_A}\\]</div></div><p class=\"recursion-note\">Apply the adaptive gradient step.</p></div><div><p class=\"recursion-heading\">AdamW: decoupled weight decay</p><div class=\"recursion-math\">\\[\\mathbf g_t=\\widehat{\\nabla f}(\\mathbf x_{t-1})\\]</div><div class=\"recursion-math\">\\[\\mathbf m_t=\\beta_1\\mathbf m_{t-1}+(1-\\beta_1)\\mathbf g_t\\]</div><div class=\"recursion-math\">\\[\\mathbf v_t=\\beta_2\\mathbf v_{t-1}+(1-\\beta_2)\\mathbf g_t^{\\odot2}\\]</div><div class=\"recursion-math\">\\[\\widehat{\\mathbf m}_t=\\frac{\\mathbf m_t}{1-\\beta_1^t},\\qquad\\widehat{\\mathbf v}_t=\\frac{\\mathbf v_t}{1-\\beta_2^t}\\]</div><div class=\"recursion-update\"><div class=\"recursion-math\">\\[\\begin{aligned}\\mathbf x_t={}&(1-\\eta_t\\lambda_{\\rm wd})\\mathbf x_{t-1}\\\\&-\\eta_t\\frac{\\widehat{\\mathbf m}_t}{\\sqrt{\\widehat{\\mathbf v}_t}+\\epsilon_A}.\\end{aligned}\\]</div></div><p class=\"recursion-note\">Apply the same rule, with separate decay.</p></div></div><p style=\"font-size:18px;margin-top:22px\">The moment rules are identical. Setting \\(\\lambda_{\\rm wd}=0\\) recovers Adam. All operations are coordinatewise.</p></div>",
+    "notes": "Tutorial comparison: plain Adam versus AdamW. Both use only the sampled loss gradient in their moments. AdamW applies the separate factor 1-eta_t lambda_wd to previous parameters. Each column has its own optimizer state. Coupled L2 regularization is discussed in Fabian Schaipp’s linked blog, not in this tutorial comparison."
+  },
+  {
+    "id": "part-6-animation-adamw",
+    "part": 6,
+    "after": "part-6-page-039",
+    "title": "AdamW",
+    "method": "adamw"
+  },
+  {
+    "id": "part-6-adamw-best-question",
+    "part": 6,
+    "after": "part-6-page-048",
+    "title": "Comparing optimizers",
+    "method": "question",
+    "html": "<div style=\"height:590px;display:flex;align-items:center;justify-content:center\"><p style=\"font:28px/1.45 CourseSans,Avenir,Arial,sans-serif;color:#444;text-align:center;margin:0\">Is AdamW the best we have?</p></div>"
+  },
+  {
+    "id": "part-2-animation-direct",
+    "part": 2,
+    "after": "part-2-page-048",
+    "title": "DIRECT on the quadratic",
+    "method": "direct",
+    "src": "../global-animations/global-demo.html?method=direct",
+    "iframeTitle": "DIRECT partition refinement on the quadratic"
+  },
+  {
+    "id": "part-2-animation-bo",
+    "part": 2,
+    "after": "part-2-page-055",
+    "title": "Bayesian optimization on the quadratic",
+    "method": "bo",
+    "src": "../global-animations/global-demo.html?method=bo",
+    "iframeTitle": "Bayesian optimization posterior and expected improvement on the quadratic"
+  },
+  {
+    "id": "part-1-architecture-picture",
+    "part": 1,
+    "after": "part-1-page-040",
+    "title": "Deep neural network landscapes",
+    "method": "architecture-picture",
+    "src": "../skip-connections/architecture.html",
+    "iframeTitle": "Original network architecture picture with reference"
+  },
+  {
+    "id": "part-1-landscape-of-thoughts",
+    "part": 1,
+    "after": "part-1-page-030",
+    "title": "Landscape of Thoughts",
+    "method": "landscape-of-thoughts",
+    "src": "../landscape-of-thoughts/slide.html?context=intro",
+    "iframeTitle": "Landscape of Thoughts: landscapes for LLM reasoning"
+  },
+  {
+    "id": "part-5-animation-pgd",
+    "part": 5,
+    "after": "part-5-page-010",
+    "title": "Projected gradient descent",
+    "method": "pgd",
+    "src": "../projected-gradient/demo.html",
+    "iframeTitle": "Projected gradient descent: gradient proposal and box projection"
+  },
+  {
+    "id": "part-6-page-054",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Projection-free algorithms",
+    "method": "projection-free",
+    "html": "<section id=\"part-6-page-054\" data-part=\"5\" data-page=\"54\" data-title=\"Projection-free algorithms\"><img data-src=\"../style-cleanup/pages/part-6/page-054.png\" alt=\"Part 6, original PDF page 54\"><svg viewBox=\"0 0 1024 768\" width=\"1024\" height=\"768\" class=\"course-title-layer\"><rect x=\"0\" y=\"0\" width=\"800\" height=\"75\" fill=\"#c9c9c9\"></rect><text x=\"32\" y=\"52\" font-size=\"27.7\" fill=\"#555555\" font-weight=\"400\" class=\"course-title\">Projection-free algorithms</text></svg><svg viewBox=\"0 0 1024 768\" width=\"1024\" height=\"768\" class=\"course-title-layer course-page-number\"><rect x=\"974\" y=\"737\" width=\"50\" height=\"31\" fill=\"#ffffff\"></rect><text x=\"1008\" y=\"760\" font-size=\"14\" fill=\"#555555\" font-weight=\"400\" text-anchor=\"end\" class=\"course-slide-number\">5.23</text></svg><div class=\"cosmetic-body-mask\" style=\"position: absolute; left: 0px; top: 75px; width: 1024px; height: 660px; background: white; z-index: 0;\"></div><div class=\"cosmetic-stage\"><img data-src=\"../style-cleanup/pages/part-6/page-054.png\" alt=\"Part 6, original PDF page 54\" class=\"cosmetic-art\"><aside class=\"notes\">Original source: Part 6, physical PDF page 54. Fixed counts: p optimization dimension, n training samples, q_t candidates per search round, b_t training mini-batch, k_t cumulative oracle calls. Published source notation retained in the paper/figure; course translation: \\text{Source }k\\mapsto t,\\ \\gamma\\mapsto\\eta,\\ D\\mapsto\\mathcal X</aside><div class=\"revision-clear\" style=\"position: absolute; left: 0px; top: 75px; width: 1024px; height: 660px; background: white; z-index: 2;\"></div><div class=\"content-replacement revision-body\" style=\"left: 48px; top: 110px; width: 928px; height: 590px; font-size: 24px; background: white;\"><div style=\"position:absolute;left:0;top:0;width:465px\"><div style=\"border-top:1px solid #bac3c4;padding:12px 0;margin:0 0 14px\"><div style=\"font-size:24px;line-height:1.25\">An Algorithm for Quadratic Programming</div><p style=\"font-size:20px;color:#555;margin:8px 0\">Marguerite Frank &amp; Philip Wolfe · 1956</p></div><div style=\"border-top:1px solid #bac3c4;padding:12px 0;margin:0 0 14px\"><div style=\"font-size:24px;line-height:1.25\">Revisiting Frank–Wolfe: Projection-Free Sparse Convex Optimization</div><p style=\"font-size:20px;color:#555;margin:8px 0\">Martin Jaggi · 2013</p></div></div><img src=\"../cosmetic-cleanup/assets/frank-wolfe-source-geometry.png\" alt=\"Original Frank–Wolfe linear minimization geometry\" style=\"position:absolute;left:490px;top:190px;width:438px;height:auto\"></div></div><div class=\"course-citation\"><a href=\"https://scholar.google.com/scholar?q=Frank%20%26%20Wolfe%20(1956)\" target=\"_blank\" rel=\"noopener noreferrer\">Frank &amp; Wolfe (1956)</a>; <a href=\"https://scholar.google.com/scholar?q=Jaggi%20(2013)\" target=\"_blank\" rel=\"noopener noreferrer\">Jaggi (2013)</a></div></section>",
+    "notes": "Original projection-free slide moved from Chapter VI before Frank–Wolfe in Chapter V; full source section retained."
+  },
+  {
+    "id": "part-5-feasible-question",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Constrained optimization",
+    "method": "transition",
+    "plain": false,
+    "question": "Can we also do constrained optimization without leaving the constraint set?"
+  },
+  {
+    "id": "part-5-frank-wolfe-formula",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Vanilla Frank–Wolfe",
+    "method": "fw-formula",
+    "src": "../frank-wolfe/formula.html",
+    "iframeTitle": "Vanilla Frank-Wolfe linear oracle and convex-combination formula"
+  },
+  {
+    "id": "part-5-animation-fw",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Frank–Wolfe",
+    "method": "fw",
+    "src": "../frank-wolfe/demo.html",
+    "iframeTitle": "Frank-Wolfe on the same quadratic and box"
+  },
+  {
+    "id": "part-5-animation-lasso",
+    "part": 5,
+    "after": "part-5-page-014",
+    "title": "Lasso: the L1 constraint",
+    "method": "lasso-pgd",
+    "src": "../lasso/demo.html?method=pgd",
+    "iframeTitle": "Constrained lasso by projection onto an L1 ball"
+  },
+  {
+    "id": "part-5-animation-lasso-fw",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Lasso with Frank–Wolfe",
+    "method": "lasso-fw",
+    "src": "../lasso/demo.html?method=fw",
+    "iframeTitle": "Constrained lasso by Frank-Wolfe on an L1 ball"
+  },
+  {
+    "id": "part-2-iterative-scheme-1",
+    "part": 2,
+    "after": "part-2-page-059",
+    "title": "Constructing an iterative scheme",
+    "method": "iterative-scheme",
+    "html": "<p style=\"font-size:28px;text-align:center;margin-bottom:30px\">One possible iterative scheme</p><div style=\"display:grid;grid-template-columns:1fr 1fr;grid-template-rows:230px 230px;gap:20px 35px\"><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">1. Sample and evaluate</p><div style=\"font-size:20px;line-height:1.35\"><p>Maintain a search state \\(S_t\\) and draw \\(q_t\\) candidates from its sampling distribution \\(P_t\\):</p><div class=\"equation\">\\[\\mathbf x^{(t,r)}\\sim P_t,\\quad y_{t,r}=f(\\mathbf x^{(t,r)}),\\qquad r=1,\\ldots,q_t.\\]</div></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"></div></div>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-2-iterative-scheme-2",
+    "part": 2,
+    "after": "part-2-page-059",
+    "title": "Constructing an iterative scheme",
+    "method": "iterative-scheme",
+    "html": "<p style=\"font-size:28px;text-align:center;margin-bottom:30px\">One possible iterative scheme</p><div style=\"display:grid;grid-template-columns:1fr 1fr;grid-template-rows:230px 230px;gap:20px 35px\"><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">1. Sample and evaluate</p><div style=\"font-size:20px;line-height:1.35\"><p>Maintain a search state \\(S_t\\) and draw \\(q_t\\) candidates from its sampling distribution \\(P_t\\):</p><div class=\"equation\">\\[\\mathbf x^{(t,r)}\\sim P_t,\\quad y_{t,r}=f(\\mathbf x^{(t,r)}),\\qquad r=1,\\ldots,q_t.\\]</div></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">2. Select</p><div style=\"font-size:20px;line-height:1.35\"><p>Compare the evaluated candidates. Keep useful candidates or rank them:</p><div class=\"equation\">\\[y_{t,(1)}\\leq\\cdots\\leq y_{t,(q_t)}.\\]</div><p>For example: accept an improving candidate, or select several highly ranked candidates.</p></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"></div></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-2-iterative-scheme-3",
+    "part": 2,
+    "after": "part-2-page-059",
+    "title": "Constructing an iterative scheme",
+    "method": "iterative-scheme",
+    "html": "<p style=\"font-size:28px;text-align:center;margin-bottom:30px\">One possible iterative scheme</p><div style=\"display:grid;grid-template-columns:1fr 1fr;grid-template-rows:230px 230px;gap:20px 35px\"><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">1. Sample and evaluate</p><div style=\"font-size:20px;line-height:1.35\"><p>Maintain a search state \\(S_t\\) and draw \\(q_t\\) candidates from its sampling distribution \\(P_t\\):</p><div class=\"equation\">\\[\\mathbf x^{(t,r)}\\sim P_t,\\quad y_{t,r}=f(\\mathbf x^{(t,r)}),\\qquad r=1,\\ldots,q_t.\\]</div></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">2. Select</p><div style=\"font-size:20px;line-height:1.35\"><p>Compare the evaluated candidates. Keep useful candidates or rank them:</p><div class=\"equation\">\\[y_{t,(1)}\\leq\\cdots\\leq y_{t,(q_t)}.\\]</div><p>For example: accept an improving candidate, or select several highly ranked candidates.</p></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">3. Update the search</p><div style=\"font-size:20px;line-height:1.35\"><p>Use the observations and selection to update \\(S_t\\), then construct \\(P_{t+1}\\).</p><p>Move the search center? Change the sampling radius? Learn promising directions?</p></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"></div></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-2-iterative-scheme-4",
+    "part": 2,
+    "after": "part-2-page-059",
+    "title": "Constructing an iterative scheme",
+    "method": "iterative-scheme",
+    "html": "<p style=\"font-size:28px;text-align:center;margin-bottom:30px\">One possible iterative scheme</p><div style=\"display:grid;grid-template-columns:1fr 1fr;grid-template-rows:230px 230px;gap:20px 35px\"><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">1. Sample and evaluate</p><div style=\"font-size:20px;line-height:1.35\"><p>Maintain a search state \\(S_t\\) and draw \\(q_t\\) candidates from its sampling distribution \\(P_t\\):</p><div class=\"equation\">\\[\\mathbf x^{(t,r)}\\sim P_t,\\quad y_{t,r}=f(\\mathbf x^{(t,r)}),\\qquad r=1,\\ldots,q_t.\\]</div></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">2. Select</p><div style=\"font-size:20px;line-height:1.35\"><p>Compare the evaluated candidates. Keep useful candidates or rank them:</p><div class=\"equation\">\\[y_{t,(1)}\\leq\\cdots\\leq y_{t,(q_t)}.\\]</div><p>For example: accept an improving candidate, or select several highly ranked candidates.</p></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">3. Update the search</p><div style=\"font-size:20px;line-height:1.35\"><p>Use the observations and selection to update \\(S_t\\), then construct \\(P_{t+1}\\).</p><p>Move the search center? Change the sampling radius? Learn promising directions?</p></div></div><div style=\"border-top:1px solid #ccc;padding-top:12px\"><p style=\"font-size:28px\">4. Repeat within the budget</p><div style=\"font-size:20px;line-height:1.35\"><div class=\"equation\">\\[k_{t+1}=k_t+q_t,\\qquad q_t\\leq B_{\\mathrm{eval}}-k_t.\\]</div><p>Repeat while evaluations remain. Retain the best evaluated point and its value.</p></div></div></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-2-animation-local",
+    "part": 2,
+    "after": "part-2-page-062",
+    "title": "Local improvement: (1+1)-ES",
+    "method": "local",
+    "src": "../blackbox-revision/search-demo.html?mode=local",
+    "iframeTitle": "Local improvement: (1+1)-ES"
+  },
+  {
+    "id": "part-2-animation-learn",
+    "part": 2,
+    "after": "part-2-page-062",
+    "title": "Learning search directions",
+    "method": "learn",
+    "src": "../blackbox-revision/search-demo.html?mode=learn",
+    "iframeTitle": "Learning search directions"
+  },
+  {
+    "id": "part-4-animation-vanilla",
+    "part": 4,
+    "after": "part-4-page-033",
+    "title": "Vanilla analysis: proof ideas",
+    "method": "vanilla-proof",
+    "src": "../proof-visualization/vanilla-proof.html?v=clarified",
+    "iframeTitle": "Interactive gradient descent proof: one step, telescoping, and step-size balance"
+  },
+  {
+    "id": "part-1-optimization-definition",
+    "part": 1,
+    "after": "part-1-page-005",
+    "title": "What is optimization?",
+    "method": "definition",
+    "html": "<p style=\"font-size:28px;line-height:1.4;margin:0 0 40px\">Choose feasible decisions to make a specified objective as good as possible.</p><div class=\"equation\" style=\"font-size:30px;margin:25px 0 40px\">\\[\\min_{\\mathbf x\\in\\mathcal X} f(\\mathbf x),\\qquad \\mathcal X\\subseteq\\mathbb R^p.\\]</div><ul><li><strong>Decisions:</strong> \\(\\mathbf x\\) contains the quantities we can change.</li><li><strong>Objective:</strong> \\(f(\\mathbf x)\\) measures loss, cost or energy; here, smaller is better.</li><li><strong>Constraints:</strong> \\(\\mathcal X\\) contains the allowed choices.</li></ul><p style=\"font-size:24px;line-height:1.4;margin-top:45px\">In practice: find a good solution within the available time, evaluations and memory.</p><aside class=\"notes\">Bridge from the quoted definitions to the course notation. We write minimization throughout; maximizing a score is equivalent to minimizing its negative. The formulation does not assume the infimum is attained. The landscape is the objective viewed over the decision space. Ask for participants' own examples on the following original slide. Do not replace or remove that discussion.</aside>"
+  },
+  {
+    "id": "part-6-landscape-of-thoughts",
+    "part": 6,
+    "after": "part-6-page-038",
+    "title": "Landscape of Thoughts",
+    "method": "landscape-of-thoughts",
+    "src": "../landscape-of-thoughts/slide.html?context=end",
+    "iframeTitle": "Landscape of Thoughts: reasoning trajectories and projected density"
+  },
+  {
+    "id": "part-6-software-divider",
+    "part": 6,
+    "after": "part-6-page-038",
+    "title": "Software",
+    "method": "section-divider",
+    "html": "",
+    "notes": "Blank divider in the course style; followed by the software slides."
+  },
+  {
+    "id": "part-6-muon-on-the-rise",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Muon on the rise",
+    "method": "blog-snapshot",
+    "html": "<a href=\"https://kellerjordan.github.io/posts/muon/\" target=\"_blank\"><img src=\"../cosmetic-cleanup/assets/chapter6/muon-original-blog.png\" alt=\"Screenshot of Keller Jordan’s original Muon blog post, December 8, 2024\" style=\"display:block;width:820px;height:auto;margin:0 auto\"></a>",
+    "citation": {
+      "label": "Keller Jordan (2024), Muon",
+      "url": "https://kellerjordan.github.io/posts/muon/"
+    }
+  },
+  {
+    "id": "part-6-llm-structure",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "LLMs: structured parameters",
+    "method": "llm-structure",
+    "html": "<p style=\"font-size:24px;margin:0 0 8px\">A GPT-style LLM predicts the next token from the preceding text.</p><svg viewBox=\"0 0 920 210\" width=\"920\" height=\"210\" role=\"img\" aria-label=\"Schematic: preceding text tokens enter an embedding and Transformer, which predicts a distribution over the next token\"><g font-family=\"CourseSans,Avenir,Arial\" font-size=\"22\" text-anchor=\"middle\"><g fill=\"#f2f3f2\" stroke=\"#b4baba\"><rect x=\"5\" y=\"64\" width=\"55\" height=\"48\"/><rect x=\"66\" y=\"64\" width=\"55\" height=\"48\"/><rect x=\"127\" y=\"64\" width=\"55\" height=\"48\"/></g><text x=\"32\" y=\"95\">The</text><text x=\"93\" y=\"95\">cat</text><text x=\"154\" y=\"95\">sat</text><text x=\"95\" y=\"150\" font-size=\"18\">preceding tokens</text><rect x=\"230\" y=\"53\" width=\"150\" height=\"75\" fill=\"#fff0df\" stroke=\"#aaa\"/><text x=\"305\" y=\"97\">Embedding</text><rect x=\"430\" y=\"20\" width=\"235\" height=\"140\" fill=\"#e6f0f0\" stroke=\"#27878e\"/><text x=\"547\" y=\"54\">Transformer blocks</text><text x=\"547\" y=\"96\" font-size=\"20\">Attention matrices</text><text x=\"547\" y=\"130\" font-size=\"20\">Feed-forward matrices</text><text x=\"812\" y=\"30\" font-size=\"20\">Next token</text><text x=\"750\" y=\"72\" font-size=\"18\">on</text><text x=\"750\" y=\"106\" font-size=\"18\">near</text><text x=\"750\" y=\"140\" font-size=\"18\">down</text><rect x=\"780\" y=\"55\" width=\"115\" height=\"20\" fill=\"#27878e\"/><rect x=\"780\" y=\"89\" width=\"55\" height=\"20\" fill=\"#8db5b8\"/><rect x=\"780\" y=\"123\" width=\"25\" height=\"20\" fill=\"#bfd4d5\"/></g><g fill=\"#777\"><path d=\"M186 88H215V81L229 90L215 99V92H186Z\"/><path d=\"M382 88H415V81L429 90L415 99V92H382Z\"/><path d=\"M668 88H705V81L719 90L705 99V92H668Z\"/></g><text x=\"812\" y=\"180\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"16\" fill=\"#666\">illustrative probabilities</text></svg><div style=\"position:absolute;left:0;top:290px;width:445px;visibility:hidden\"><div style=\"font-size:26px;color:#a96c2c\">Adam / AdamW: coordinates</div><svg viewBox=\"0 0 420 100\" width=\"420\" height=\"100\" role=\"img\" aria-label=\"A weight matrix viewed as a vector of individual coordinates\"><rect x=\"10\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"33\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"56\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"79\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"10\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.75\"/><rect x=\"33\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.85\"/><rect x=\"56\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.9500000000000001\"/><rect x=\"79\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"10\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"33\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"56\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"79\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.75\"/><path d=\"M120 42H153V35L167 44L153 53V46H120Z\" fill=\"#777\"/><rect x=\"180\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"198\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"216\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"234\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"252\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.75\"/><rect x=\"270\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.85\"/><rect x=\"288\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.9500000000000001\"/><rect x=\"306\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"324\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"342\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"360\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"378\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.75\"/></svg><p style=\"font-size:22px;line-height:1.35\">Apply a scalar adaptive rule to each weight entry.</p><p style=\"font-size:20px;color:#555\">Equivalent view: \\(\\operatorname{vec}(\\mathbf W)\\). Tensors need not be flattened in code.</p></div><div style=\"position:absolute;left:483px;top:290px;width:445px;visibility:hidden\"><div style=\"font-size:26px;color:#27878e\">Muon: matrix geometry</div><svg viewBox=\"0 0 420 100\" width=\"420\" height=\"100\" role=\"img\" aria-label=\"A matrix update retains its row and column structure\"><rect x=\"45\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.35\"/><rect x=\"68\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.44999999999999996\"/><rect x=\"91\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.55\"/><rect x=\"114\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.65\"/><rect x=\"45\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.75\"/><rect x=\"68\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.85\"/><rect x=\"91\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.9500000000000001\"/><rect x=\"114\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.35\"/><rect x=\"45\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.44999999999999996\"/><rect x=\"68\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.55\"/><rect x=\"91\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.65\"/><rect x=\"114\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.75\"/><path d=\"M25 82V4M36 92H145\" stroke=\"#27878e\" stroke-width=\"2\"/><text x=\"180\" y=\"38\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"21\">rows and columns</text><text x=\"180\" y=\"70\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"21\">processed together</text></svg><p style=\"font-size:22px;line-height:1.35\">Transform a hidden-layer update using its matrix structure.</p><p style=\"font-size:20px;color:#555\">\\(\\mathbf W\\in\\mathbb R^{d_{\\rm out}\\times d_{\\rm in}}\\): keep the two-dimensional geometry.</p></div>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-6-llm-structure-reveal-1",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "LLMs: structured parameters",
+    "method": "llm-structure",
+    "html": "<p style=\"font-size:24px;margin:0 0 8px\">A GPT-style LLM predicts the next token from the preceding text.</p><svg viewBox=\"0 0 920 210\" width=\"920\" height=\"210\" role=\"img\" aria-label=\"Schematic: preceding text tokens enter an embedding and Transformer, which predicts a distribution over the next token\"><g font-family=\"CourseSans,Avenir,Arial\" font-size=\"22\" text-anchor=\"middle\"><g fill=\"#f2f3f2\" stroke=\"#b4baba\"><rect x=\"5\" y=\"64\" width=\"55\" height=\"48\"/><rect x=\"66\" y=\"64\" width=\"55\" height=\"48\"/><rect x=\"127\" y=\"64\" width=\"55\" height=\"48\"/></g><text x=\"32\" y=\"95\">The</text><text x=\"93\" y=\"95\">cat</text><text x=\"154\" y=\"95\">sat</text><text x=\"95\" y=\"150\" font-size=\"18\">preceding tokens</text><rect x=\"230\" y=\"53\" width=\"150\" height=\"75\" fill=\"#fff0df\" stroke=\"#aaa\"/><text x=\"305\" y=\"97\">Embedding</text><rect x=\"430\" y=\"20\" width=\"235\" height=\"140\" fill=\"#e6f0f0\" stroke=\"#27878e\"/><text x=\"547\" y=\"54\">Transformer blocks</text><text x=\"547\" y=\"96\" font-size=\"20\">Attention matrices</text><text x=\"547\" y=\"130\" font-size=\"20\">Feed-forward matrices</text><text x=\"812\" y=\"30\" font-size=\"20\">Next token</text><text x=\"750\" y=\"72\" font-size=\"18\">on</text><text x=\"750\" y=\"106\" font-size=\"18\">near</text><text x=\"750\" y=\"140\" font-size=\"18\">down</text><rect x=\"780\" y=\"55\" width=\"115\" height=\"20\" fill=\"#27878e\"/><rect x=\"780\" y=\"89\" width=\"55\" height=\"20\" fill=\"#8db5b8\"/><rect x=\"780\" y=\"123\" width=\"25\" height=\"20\" fill=\"#bfd4d5\"/></g><g fill=\"#777\"><path d=\"M186 88H215V81L229 90L215 99V92H186Z\"/><path d=\"M382 88H415V81L429 90L415 99V92H382Z\"/><path d=\"M668 88H705V81L719 90L705 99V92H668Z\"/></g><text x=\"812\" y=\"180\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"16\" fill=\"#666\">illustrative probabilities</text></svg><div style=\"position:absolute;left:0;top:290px;width:445px;visibility:visible\"><div style=\"font-size:26px;color:#a96c2c\">Adam / AdamW: coordinates</div><svg viewBox=\"0 0 420 100\" width=\"420\" height=\"100\" role=\"img\" aria-label=\"A weight matrix viewed as a vector of individual coordinates\"><rect x=\"10\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"33\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"56\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"79\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"10\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.75\"/><rect x=\"33\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.85\"/><rect x=\"56\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.9500000000000001\"/><rect x=\"79\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"10\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"33\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"56\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"79\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.75\"/><path d=\"M120 42H153V35L167 44L153 53V46H120Z\" fill=\"#777\"/><rect x=\"180\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"198\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"216\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"234\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"252\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.75\"/><rect x=\"270\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.85\"/><rect x=\"288\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.9500000000000001\"/><rect x=\"306\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"324\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"342\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"360\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"378\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.75\"/></svg><p style=\"font-size:22px;line-height:1.35\">Apply a scalar adaptive rule to each weight entry.</p><p style=\"font-size:20px;color:#555\">Equivalent view: \\(\\operatorname{vec}(\\mathbf W)\\). Tensors need not be flattened in code.</p></div><div style=\"position:absolute;left:483px;top:290px;width:445px;visibility:hidden\"><div style=\"font-size:26px;color:#27878e\">Muon: matrix geometry</div><svg viewBox=\"0 0 420 100\" width=\"420\" height=\"100\" role=\"img\" aria-label=\"A matrix update retains its row and column structure\"><rect x=\"45\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.35\"/><rect x=\"68\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.44999999999999996\"/><rect x=\"91\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.55\"/><rect x=\"114\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.65\"/><rect x=\"45\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.75\"/><rect x=\"68\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.85\"/><rect x=\"91\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.9500000000000001\"/><rect x=\"114\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.35\"/><rect x=\"45\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.44999999999999996\"/><rect x=\"68\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.55\"/><rect x=\"91\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.65\"/><rect x=\"114\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.75\"/><path d=\"M25 82V4M36 92H145\" stroke=\"#27878e\" stroke-width=\"2\"/><text x=\"180\" y=\"38\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"21\">rows and columns</text><text x=\"180\" y=\"70\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"21\">processed together</text></svg><p style=\"font-size:22px;line-height:1.35\">Transform a hidden-layer update using its matrix structure.</p><p style=\"font-size:20px;color:#555\">\\(\\mathbf W\\in\\mathbb R^{d_{\\rm out}\\times d_{\\rm in}}\\): keep the two-dimensional geometry.</p></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-llm-structure-reveal-2",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "LLMs: structured parameters",
+    "method": "llm-structure",
+    "html": "<p style=\"font-size:24px;margin:0 0 8px\">A GPT-style LLM predicts the next token from the preceding text.</p><svg viewBox=\"0 0 920 210\" width=\"920\" height=\"210\" role=\"img\" aria-label=\"Schematic: preceding text tokens enter an embedding and Transformer, which predicts a distribution over the next token\"><g font-family=\"CourseSans,Avenir,Arial\" font-size=\"22\" text-anchor=\"middle\"><g fill=\"#f2f3f2\" stroke=\"#b4baba\"><rect x=\"5\" y=\"64\" width=\"55\" height=\"48\"/><rect x=\"66\" y=\"64\" width=\"55\" height=\"48\"/><rect x=\"127\" y=\"64\" width=\"55\" height=\"48\"/></g><text x=\"32\" y=\"95\">The</text><text x=\"93\" y=\"95\">cat</text><text x=\"154\" y=\"95\">sat</text><text x=\"95\" y=\"150\" font-size=\"18\">preceding tokens</text><rect x=\"230\" y=\"53\" width=\"150\" height=\"75\" fill=\"#fff0df\" stroke=\"#aaa\"/><text x=\"305\" y=\"97\">Embedding</text><rect x=\"430\" y=\"20\" width=\"235\" height=\"140\" fill=\"#e6f0f0\" stroke=\"#27878e\"/><text x=\"547\" y=\"54\">Transformer blocks</text><text x=\"547\" y=\"96\" font-size=\"20\">Attention matrices</text><text x=\"547\" y=\"130\" font-size=\"20\">Feed-forward matrices</text><text x=\"812\" y=\"30\" font-size=\"20\">Next token</text><text x=\"750\" y=\"72\" font-size=\"18\">on</text><text x=\"750\" y=\"106\" font-size=\"18\">near</text><text x=\"750\" y=\"140\" font-size=\"18\">down</text><rect x=\"780\" y=\"55\" width=\"115\" height=\"20\" fill=\"#27878e\"/><rect x=\"780\" y=\"89\" width=\"55\" height=\"20\" fill=\"#8db5b8\"/><rect x=\"780\" y=\"123\" width=\"25\" height=\"20\" fill=\"#bfd4d5\"/></g><g fill=\"#777\"><path d=\"M186 88H215V81L229 90L215 99V92H186Z\"/><path d=\"M382 88H415V81L429 90L415 99V92H382Z\"/><path d=\"M668 88H705V81L719 90L705 99V92H668Z\"/></g><text x=\"812\" y=\"180\" text-anchor=\"middle\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"16\" fill=\"#666\">illustrative probabilities</text></svg><div style=\"position:absolute;left:0;top:290px;width:445px;visibility:visible\"><div style=\"font-size:26px;color:#a96c2c\">Adam / AdamW: coordinates</div><svg viewBox=\"0 0 420 100\" width=\"420\" height=\"100\" role=\"img\" aria-label=\"A weight matrix viewed as a vector of individual coordinates\"><rect x=\"10\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"33\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"56\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"79\" y=\"8\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"10\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.75\"/><rect x=\"33\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.85\"/><rect x=\"56\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.9500000000000001\"/><rect x=\"79\" y=\"31\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"10\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"33\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"56\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"79\" y=\"54\" width=\"19\" height=\"19\" fill=\"#c88439\" opacity=\"0.75\"/><path d=\"M120 42H153V35L167 44L153 53V46H120Z\" fill=\"#777\"/><rect x=\"180\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"198\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"216\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"234\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"252\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.75\"/><rect x=\"270\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.85\"/><rect x=\"288\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.9500000000000001\"/><rect x=\"306\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.35\"/><rect x=\"324\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.44999999999999996\"/><rect x=\"342\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.55\"/><rect x=\"360\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.65\"/><rect x=\"378\" y=\"33\" width=\"15\" height=\"23\" fill=\"#c88439\" opacity=\"0.75\"/></svg><p style=\"font-size:22px;line-height:1.35\">Apply a scalar adaptive rule to each weight entry.</p><p style=\"font-size:20px;color:#555\">Equivalent view: \\(\\operatorname{vec}(\\mathbf W)\\). Tensors need not be flattened in code.</p></div><div style=\"position:absolute;left:483px;top:290px;width:445px;visibility:visible\"><div style=\"font-size:26px;color:#27878e\">Muon: matrix geometry</div><svg viewBox=\"0 0 420 100\" width=\"420\" height=\"100\" role=\"img\" aria-label=\"A matrix update retains its row and column structure\"><rect x=\"45\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.35\"/><rect x=\"68\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.44999999999999996\"/><rect x=\"91\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.55\"/><rect x=\"114\" y=\"8\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.65\"/><rect x=\"45\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.75\"/><rect x=\"68\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.85\"/><rect x=\"91\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.9500000000000001\"/><rect x=\"114\" y=\"31\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.35\"/><rect x=\"45\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.44999999999999996\"/><rect x=\"68\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.55\"/><rect x=\"91\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.65\"/><rect x=\"114\" y=\"54\" width=\"19\" height=\"19\" fill=\"#27878e\" opacity=\"0.75\"/><path d=\"M25 82V4M36 92H145\" stroke=\"#27878e\" stroke-width=\"2\"/><text x=\"180\" y=\"38\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"21\">rows and columns</text><text x=\"180\" y=\"70\" font-family=\"CourseSans,Avenir,Arial\" font-size=\"21\">processed together</text></svg><p style=\"font-size:22px;line-height:1.35\">Transform a hidden-layer update using its matrix structure.</p><p style=\"font-size:20px;color:#555\">\\(\\mathbf W\\in\\mathbb R^{d_{\\rm out}\\times d_{\\rm in}}\\): keep the two-dimensional geometry.</p></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-muon-llm",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Muon for LLM weight matrices",
+    "method": "muon-polar",
+    "html": "<p style=\"font-size:24px;margin:0 0 15px\">LLMs contain large matrices that map one representation to another.</p><svg viewBox=\"0 0 920 210\" width=\"920\" height=\"210\" role=\"img\" aria-label=\"LLM block: embedding, hidden attention and feed-forward matrices, output\"><defs><marker id=\"llm-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0L8 4L0 8\" fill=\"#777\"/></marker></defs><g stroke=\"#777\" stroke-width=\"2\" marker-end=\"url(#llm-arrow)\"><path d=\"M145 95H198\"/><path d=\"M403 95H458\"/><path d=\"M663 95H718\"/></g><g font-family=\"CourseSans,Avenir,Arial\" font-size=\"23\" text-anchor=\"middle\"><rect x=\"0\" y=\"45\" width=\"145\" height=\"100\" fill=\"#fff0df\" stroke=\"#b6a48f\"/><text x=\"72\" y=\"85\">Embedding</text><text x=\"72\" y=\"117\" font-size=\"20\">token → vector</text><rect x=\"200\" y=\"30\" width=\"203\" height=\"130\" fill=\"#e6f0f0\" stroke=\"#27878e\"/><text x=\"301\" y=\"80\">Attention</text><text x=\"301\" y=\"115\" font-size=\"20\">Q, K, V, O weights</text><rect x=\"460\" y=\"30\" width=\"203\" height=\"130\" fill=\"#e6f0f0\" stroke=\"#27878e\"/><text x=\"561\" y=\"80\">Feed-forward</text><text x=\"561\" y=\"115\" font-size=\"20\">linear weights</text><rect x=\"720\" y=\"45\" width=\"190\" height=\"100\" fill=\"#fff0df\" stroke=\"#b6a48f\"/><text x=\"815\" y=\"85\">Output head</text><text x=\"815\" y=\"117\" font-size=\"20\">vector → logits</text><text x=\"433\" y=\"199\" fill=\"#27878e\">Muon: hidden weight matrices</text></g></svg><div class=\"equation\" style=\"font-size:25px\">\\[\\mathbf h_{\\rm out}=\\mathbf W\\mathbf h_{\\rm in},\\qquad\\mathbf W\\in\\mathbb R^{d_{\\rm out}\\times d_{\\rm in}}.\\]</div><div style=\"visibility:hidden\"><ul><li>Use matrix structure when choosing the update direction.</li><li>In the reference setup, embeddings, the output head, gains and biases use AdamW.</li></ul></div>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-6-muon-llm-reveal",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Muon for LLM weight matrices",
+    "method": "muon-polar",
+    "html": "<p style=\"font-size:24px;margin:0 0 15px\">LLMs contain large matrices that map one representation to another.</p><svg viewBox=\"0 0 920 210\" width=\"920\" height=\"210\" role=\"img\" aria-label=\"LLM block: embedding, hidden attention and feed-forward matrices, output\"><defs><marker id=\"llm-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto\"><path d=\"M0 0L8 4L0 8\" fill=\"#777\"/></marker></defs><g stroke=\"#777\" stroke-width=\"2\" marker-end=\"url(#llm-arrow)\"><path d=\"M145 95H198\"/><path d=\"M403 95H458\"/><path d=\"M663 95H718\"/></g><g font-family=\"CourseSans,Avenir,Arial\" font-size=\"23\" text-anchor=\"middle\"><rect x=\"0\" y=\"45\" width=\"145\" height=\"100\" fill=\"#fff0df\" stroke=\"#b6a48f\"/><text x=\"72\" y=\"85\">Embedding</text><text x=\"72\" y=\"117\" font-size=\"20\">token → vector</text><rect x=\"200\" y=\"30\" width=\"203\" height=\"130\" fill=\"#e6f0f0\" stroke=\"#27878e\"/><text x=\"301\" y=\"80\">Attention</text><text x=\"301\" y=\"115\" font-size=\"20\">Q, K, V, O weights</text><rect x=\"460\" y=\"30\" width=\"203\" height=\"130\" fill=\"#e6f0f0\" stroke=\"#27878e\"/><text x=\"561\" y=\"80\">Feed-forward</text><text x=\"561\" y=\"115\" font-size=\"20\">linear weights</text><rect x=\"720\" y=\"45\" width=\"190\" height=\"100\" fill=\"#fff0df\" stroke=\"#b6a48f\"/><text x=\"815\" y=\"85\">Output head</text><text x=\"815\" y=\"117\" font-size=\"20\">vector → logits</text><text x=\"433\" y=\"199\" fill=\"#27878e\">Muon: hidden weight matrices</text></g></svg><div class=\"equation\" style=\"font-size:25px\">\\[\\mathbf h_{\\rm out}=\\mathbf W\\mathbf h_{\\rm in},\\qquad\\mathbf W\\in\\mathbb R^{d_{\\rm out}\\times d_{\\rm in}}.\\]</div><div style=\"visibility:visible\"><ul><li>Use matrix structure when choosing the update direction.</li><li>In the reference setup, embeddings, the output head, gains and biases use AdamW.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-muon-polar",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Muon: the polar update direction",
+    "method": "muon-polar",
+    "html": "<p style=\"font-size:22px;margin:0\">One matrix block; \\(\\mathbf G_t=\\nabla_{\\mathbf W}f_t(\\mathbf W_{t-1})\\), \\(\\mathbf M_0=0\\).</p><div class=\"equation\" style=\"font-size:25px\">\\[\\mathbf M_t=\\beta\\mathbf M_{t-1}+(1-\\beta)\\mathbf G_t,\\qquad\\mathbf M_t=\\mathbf U_t\\mathbf\\Sigma_t\\mathbf V_t^\\top.\\]</div><div class=\"equation\" style=\"font-size:25px\">\\[\\mathbf P_t=\\mathbf U_t\\mathbf V_t^\\top,\\qquad\\mathbf W_t=\\mathbf W_{t-1}-\\eta_t\\mathbf P_t.\\]</div><p style=\"font-size:20px;color:#666\">Teaching variant: plain momentum and exact polar factor; omit decay and shape scaling.</p><p style=\"position:absolute;left:0;top:290px;width:928px;text-align:center;font-size:28px\">What changes when all nonzero singular values become 1?</p>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-6-muon-polar-reveal",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Muon: the polar update direction",
+    "method": "muon-polar",
+    "html": "<p style=\"font-size:22px;margin:0\">One matrix block; \\(\\mathbf G_t=\\nabla_{\\mathbf W}f_t(\\mathbf W_{t-1})\\), \\(\\mathbf M_0=0\\).</p><div class=\"equation\" style=\"font-size:25px\">\\[\\mathbf M_t=\\beta\\mathbf M_{t-1}+(1-\\beta)\\mathbf G_t,\\qquad\\mathbf M_t=\\mathbf U_t\\mathbf\\Sigma_t\\mathbf V_t^\\top.\\]</div><div class=\"equation\" style=\"font-size:25px\">\\[\\mathbf P_t=\\mathbf U_t\\mathbf V_t^\\top,\\qquad\\mathbf W_t=\\mathbf W_{t-1}-\\eta_t\\mathbf P_t.\\]</div><p style=\"font-size:20px;color:#666\">Teaching variant: plain momentum and exact polar factor; omit decay and shape scaling.</p><iframe src=\"../muon-polar/polar-demo.html?mode=geometry\" title=\"Exact polar-factor geometry\" style=\"position:absolute;left:0;top:245px;width:928px;height:330px;border:0\"></iframe>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-polar-express",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Polar Express: computing the direction",
+    "method": "muon-polar",
+    "html": "<p style=\"font-size:22px;margin:0\">Approximate the polar factor using matrix products, without an SVD at each update.</p><div class=\"equation\" style=\"font-size:24px\">\\[\\mathbf X_{j+1}=a_j\\mathbf X_j+b_j(\\mathbf X_j\\mathbf X_j^\\top)\\mathbf X_j+c_j(\\mathbf X_j\\mathbf X_j^\\top)^2\\mathbf X_j.\\]</div><div class=\"equation\" style=\"font-size:24px\">\\[s_{j+1}=a_js_j+b_js_j^3+c_js_j^5,\\qquad\\text{target }s=1\\quad(s_0>0).\\]</div><p style=\"font-size:20px;margin:0\">Polar Express chooses a new polynomial for each inner iteration, using a spectral interval.</p><p style=\"font-size:20px;margin:8px 0\">Start with \\(\\mathbf X_0=\\mathbf M_t/(1.01\\|\\mathbf M_t\\|_{\\rm F}+\\epsilon_P)\\).</p><p style=\"position:absolute;left:0;top:300px;width:928px;text-align:center;font-size:28px\">How can a scalar polynomial transform an entire matrix spectrum?</p><p style=\"position:absolute;left:0;top:400px;font-size:22px\">The classical cubic uses fixed coefficients; Polar Express adapts its quintic coefficients.</p>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-6-polar-express-reveal",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Polar Express: computing the direction",
+    "method": "muon-polar",
+    "html": "<p style=\"font-size:22px;margin:0\">Approximate the polar factor using matrix products, without an SVD at each update.</p><div class=\"equation\" style=\"font-size:24px\">\\[\\mathbf X_{j+1}=a_j\\mathbf X_j+b_j(\\mathbf X_j\\mathbf X_j^\\top)\\mathbf X_j+c_j(\\mathbf X_j\\mathbf X_j^\\top)^2\\mathbf X_j.\\]</div><div class=\"equation\" style=\"font-size:24px\">\\[s_{j+1}=a_js_j+b_js_j^3+c_js_j^5,\\qquad\\text{target }s=1\\quad(s_0>0).\\]</div><p style=\"font-size:20px;margin:0\">Polar Express chooses a new polynomial for each inner iteration, using a spectral interval.</p><p style=\"font-size:20px;margin:8px 0\">Start with \\(\\mathbf X_0=\\mathbf M_t/(1.01\\|\\mathbf M_t\\|_{\\rm F}+\\epsilon_P)\\).</p><iframe src=\"../muon-polar/polar-demo.html?mode=spectrum\" title=\"Singular-value iteration for Polar Express and Newton–Schulz\" style=\"position:absolute;left:0;top:245px;width:928px;height:330px;border:0\"></iframe>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-polar-llm-results",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Polar Express in LLM training",
+    "method": "muon-polar",
+    "html": "<p style=\"font-size:24px;margin:0\">GPT-2-Large · 774M parameters · FineWeb, 1 billion training tokens</p><div style=\"display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px\"><img src=\"../muon-polar/assets/gpt2-learning-rates.svg\" alt=\"Author figure: GPT-2 validation loss versus learning rate for Muon polar-factor methods\" style=\"width:100%;height:315px;object-fit:contain\"><img src=\"../muon-polar/assets/gpt2-validation.svg\" alt=\"Author figure: GPT-2 validation-loss trajectories for the compared Muon implementations\" style=\"width:100%;height:315px;object-fit:contain\"></div><ul><li>These curves compare ways of computing the polar direction inside Muon.</li><li>They are a result for this training setup; this is not an AdamW comparison.</li></ul><p style=\"font-size:20px;color:#555\">Practical Muon also specifies Nesterov momentum, weight decay, shape scaling and parameter groups.</p>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-take-home-1",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Formulate the decisions \\(\\mathbf x\\), objective \\(f\\) and feasible set \\(\\mathcal X\\).</li><li style=\"visibility:hidden\">Landscapes connect energy, fitness, learning and other scientific problems.</li><li style=\"visibility:hidden\">Basins, barriers, symmetry and curvature help explain search behavior.</li><li style=\"visibility:hidden\">Choose a method using the available information, problem size and evaluation budget.</li></ul></div>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-1-take-home-2",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Formulate the decisions \\(\\mathbf x\\), objective \\(f\\) and feasible set \\(\\mathcal X\\).</li><li style=\"visibility:visible\">Landscapes connect energy, fitness, learning and other scientific problems.</li><li style=\"visibility:hidden\">Basins, barriers, symmetry and curvature help explain search behavior.</li><li style=\"visibility:hidden\">Choose a method using the available information, problem size and evaluation budget.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-1-take-home-3",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Formulate the decisions \\(\\mathbf x\\), objective \\(f\\) and feasible set \\(\\mathcal X\\).</li><li style=\"visibility:visible\">Landscapes connect energy, fitness, learning and other scientific problems.</li><li style=\"visibility:visible\">Basins, barriers, symmetry and curvature help explain search behavior.</li><li style=\"visibility:hidden\">Choose a method using the available information, problem size and evaluation budget.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-1-take-home-4",
+    "part": 1,
+    "after": "part-1-page-085",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Formulate the decisions \\(\\mathbf x\\), objective \\(f\\) and feasible set \\(\\mathcal X\\).</li><li style=\"visibility:visible\">Landscapes connect energy, fitness, learning and other scientific problems.</li><li style=\"visibility:visible\">Basins, barriers, symmetry and curvature help explain search behavior.</li><li style=\"visibility:visible\">Choose a method using the available information, problem size and evaluation budget.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-3-take-home-2",
+    "part": 3,
+    "after": "part-3-page-034",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Gradient descent uses first-order information; the step size matters.</li><li style=\"visibility:visible\">Newton solves \\(\\mathbf H_t\\mathbf d_t=-\\mathbf g_t\\); curvature and step safeguards matter.</li><li style=\"visibility:hidden\">Quasi-Newton methods learn curvature from changes in positions and gradients.</li><li style=\"visibility:hidden\">Local methods can be combined with sampling to explore multiple basins.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-3-take-home-3",
+    "part": 3,
+    "after": "part-3-page-034",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Gradient descent uses first-order information; the step size matters.</li><li style=\"visibility:visible\">Newton solves \\(\\mathbf H_t\\mathbf d_t=-\\mathbf g_t\\); curvature and step safeguards matter.</li><li style=\"visibility:visible\">Quasi-Newton methods learn curvature from changes in positions and gradients.</li><li style=\"visibility:hidden\">Local methods can be combined with sampling to explore multiple basins.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-3-take-home-4",
+    "part": 3,
+    "after": "part-3-page-034",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Gradient descent uses first-order information; the step size matters.</li><li style=\"visibility:visible\">Newton solves \\(\\mathbf H_t\\mathbf d_t=-\\mathbf g_t\\); curvature and step safeguards matter.</li><li style=\"visibility:visible\">Quasi-Newton methods learn curvature from changes in positions and gradients.</li><li style=\"visibility:visible\">Local methods can be combined with sampling to explore multiple basins.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-4-schedule-paper",
+    "title": "Learning-rate schedules",
+    "html": "<div class=\"theory-copy\"><img src=\"../proof-visualization/schedule-paper/paper-head.png\" alt=\"Schaipp, Hägele, Taylor, Şimşekli and Bach: paper header\" style=\"display:block;position:static!important;width:820px!important;height:173px!important;object-fit:contain;margin:0 auto 16px!important\"><img src=\"../proof-visualization/schedule-paper/figure-2.png\" alt=\"Figure 2: cosine and warmup-stable-decay schedules and their theoretical bounds\" style=\"display:block;position:static!important;width:760px!important;height:287px!important;object-fit:contain;margin:0 auto 12px!important\"><p style=\"font-size:21px!important;line-height:1.3\">Figure 2: cosine and warmup–stable–decay schedules (left); predicted objective-error bounds (right).</p><p style=\"font-size:20px!important;line-height:1.3\">Write \\(\\eta_t=\\eta_{\\mathrm{base}}s_t\\): choose both the schedule shape \\(s_t\\) and its scale \\(\\eta_{\\mathrm{base}}\\).</p></div><aside class=\"notes\">Schaipp et al. (2025), version 2, Figure 2. The theoretical WSD curves in this figure omit warmup. The source figure uses eta_t for the schedule shape and gamma for the base scale; the course separates these as s_t and eta_base. This is a schedule, not an adaptive rule based on current gradients.</aside>",
+    "part": 4,
+    "after": "part-4-page-055",
+    "method": "paper-summary"
+  },
+  {
+    "id": "part-4-schedule-theory-practice",
+    "title": "Convex theory and model training",
+    "html": "<div class=\"theory-copy\"><img src=\"../proof-visualization/schedule-paper/figure-1.png\" alt=\"Figure 1: measured validation loss for a 210M Llama model and theoretical convex suboptimality bounds\" style=\"display:block;position:static!important;width:880px!important;height:320px!important;object-fit:contain;margin:0 auto 18px!important\"><ul><li>Left: validation loss of a 210M Llama model trained with AdamW. Right: a bound from convex optimization.</li><li>Both show a sharp improvement during the cooldown of the warmup–stable–decay schedule.</li><li>The agreement helps compare and tune schedules; it does not prove that LLM training is convex.</li></ul></div><aside class=\"notes\">Figure 1, supplied PDF page 1. Both panels compare WSD and cosine for training horizons 22k, 33k, 44k; the cosine base learning rate is twice the WSD base rate. Different y-axes and different quantities: measured validation loss versus a theoretical suboptimality upper bound. The paper’s theoretical bound concerns convex stochastic optimization with a last-iterate guarantee; our preceding elementary bound used an averaged iterate. Do not treat these theorems as identical. The reported experiments also include 124M and 210M models and applications to schedule transfer.</aside>",
+    "part": 4,
+    "after": "part-4-page-055",
+    "method": "paper-summary"
+  },
+  {
+    "id": "part-4-take-home-1",
+    "part": 4,
+    "after": "part-4-page-055",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">One distance calculation underlies the gradient-descent convergence proofs.</li><li style=\"visibility:hidden\">Convexity and bounded gradients give an averaged-output error of \\(O(T^{-1/2})\\).</li><li style=\"visibility:hidden\">Convexity and \\(L\\)-smoothness give a last-iterate error of \\(O(T^{-1})\\).</li><li style=\"visibility:hidden\">Add \\(\\mu\\)-strong convexity for geometric convergence; conditioning \\(L/\\mu\\) controls the rate.</li></ul></div>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-4-take-home-2",
+    "part": 4,
+    "after": "part-4-page-055",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">One distance calculation underlies the gradient-descent convergence proofs.</li><li style=\"visibility:visible\">Convexity and bounded gradients give an averaged-output error of \\(O(T^{-1/2})\\).</li><li style=\"visibility:hidden\">Convexity and \\(L\\)-smoothness give a last-iterate error of \\(O(T^{-1})\\).</li><li style=\"visibility:hidden\">Add \\(\\mu\\)-strong convexity for geometric convergence; conditioning \\(L/\\mu\\) controls the rate.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-4-take-home-3",
+    "part": 4,
+    "after": "part-4-page-055",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">One distance calculation underlies the gradient-descent convergence proofs.</li><li style=\"visibility:visible\">Convexity and bounded gradients give an averaged-output error of \\(O(T^{-1/2})\\).</li><li style=\"visibility:visible\">Convexity and \\(L\\)-smoothness give a last-iterate error of \\(O(T^{-1})\\).</li><li style=\"visibility:hidden\">Add \\(\\mu\\)-strong convexity for geometric convergence; conditioning \\(L/\\mu\\) controls the rate.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-4-take-home-4",
+    "part": 4,
+    "after": "part-4-page-055",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">One distance calculation underlies the gradient-descent convergence proofs.</li><li style=\"visibility:visible\">Convexity and bounded gradients give an averaged-output error of \\(O(T^{-1/2})\\).</li><li style=\"visibility:visible\">Convexity and \\(L\\)-smoothness give a last-iterate error of \\(O(T^{-1})\\).</li><li style=\"visibility:visible\">Add \\(\\mu\\)-strong convexity for geometric convergence; conditioning \\(L/\\mu\\) controls the rate.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-5-take-home-1",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Constraints and non-smooth terms change the update, not the optimization goal.</li><li style=\"visibility:hidden\">Projected gradient descent takes a gradient step and projects onto the feasible set.</li><li style=\"visibility:hidden\">Proximal gradient keeps a non-smooth regularizer in a tractable subproblem.</li><li style=\"visibility:hidden\">Frank–Wolfe uses a linear minimization oracle and a feasible convex-combination step.</li></ul></div>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-5-take-home-2",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Constraints and non-smooth terms change the update, not the optimization goal.</li><li style=\"visibility:visible\">Projected gradient descent takes a gradient step and projects onto the feasible set.</li><li style=\"visibility:hidden\">Proximal gradient keeps a non-smooth regularizer in a tractable subproblem.</li><li style=\"visibility:hidden\">Frank–Wolfe uses a linear minimization oracle and a feasible convex-combination step.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-5-take-home-3",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Constraints and non-smooth terms change the update, not the optimization goal.</li><li style=\"visibility:visible\">Projected gradient descent takes a gradient step and projects onto the feasible set.</li><li style=\"visibility:visible\">Proximal gradient keeps a non-smooth regularizer in a tractable subproblem.</li><li style=\"visibility:hidden\">Frank–Wolfe uses a linear minimization oracle and a feasible convex-combination step.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-5-take-home-4",
+    "part": 5,
+    "after": "part-5-page-024",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Constraints and non-smooth terms change the update, not the optimization goal.</li><li style=\"visibility:visible\">Projected gradient descent takes a gradient step and projects onto the feasible set.</li><li style=\"visibility:visible\">Proximal gradient keeps a non-smooth regularizer in a tractable subproblem.</li><li style=\"visibility:visible\">Frank–Wolfe uses a linear minimization oracle and a feasible convex-combination step.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-take-home-1",
+    "part": 6,
+    "after": "part-6-page-047",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Mini-batches trade gradient cost against sampling noise.</li><li style=\"visibility:hidden\">Adam uses adaptive coordinate scaling; AdamW applies decoupled weight decay.</li><li style=\"visibility:hidden\">Muon transforms matrix update directions; Polar Express approximates the polar factor efficiently.</li><li style=\"visibility:hidden\">Interpret LLM and landscape results in their tested setting, including symmetry, tuning and compute budgets.</li></ul></div>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-6-take-home-2",
+    "part": 6,
+    "after": "part-6-page-047",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Mini-batches trade gradient cost against sampling noise.</li><li style=\"visibility:visible\">Adam uses adaptive coordinate scaling; AdamW applies decoupled weight decay.</li><li style=\"visibility:hidden\">Muon transforms matrix update directions; Polar Express approximates the polar factor efficiently.</li><li style=\"visibility:hidden\">Interpret LLM and landscape results in their tested setting, including symmetry, tuning and compute budgets.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-take-home-3",
+    "part": 6,
+    "after": "part-6-page-047",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Mini-batches trade gradient cost against sampling noise.</li><li style=\"visibility:visible\">Adam uses adaptive coordinate scaling; AdamW applies decoupled weight decay.</li><li style=\"visibility:visible\">Muon transforms matrix update directions; Polar Express approximates the polar factor efficiently.</li><li style=\"visibility:hidden\">Interpret LLM and landscape results in their tested setting, including symmetry, tuning and compute budgets.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-take-home-4",
+    "part": 6,
+    "after": "part-6-page-047",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<div style=\"margin-top:35px\"><ul><li style=\"visibility:visible\">Mini-batches trade gradient cost against sampling noise.</li><li style=\"visibility:visible\">Adam uses adaptive coordinate scaling; AdamW applies decoupled weight decay.</li><li style=\"visibility:visible\">Muon transforms matrix update directions; Polar Express approximates the polar factor efficiently.</li><li style=\"visibility:visible\">Interpret LLM and landscape results in their tested setting, including symmetry, tuning and compute budgets.</li></ul></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-marin-outlook",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Outlook: modern optimization of LLMs",
+    "method": "outlook",
+    "html": "<p style=\"font-size:28px;margin:0\">Marin “Mochi” 535B-A23B</p><p style=\"font-size:20px;color:#555;margin:8px 0 20px\">Open pre-training checkpoints · Open Athena · 17 November 2026</p><img src=\"../muon-polar/assets/mochi-training-checkpoints.svg\" alt=\"Open Athena original plot: Mochi training loss over 18.2 trillion tokens and the released checkpoints\" style=\"position:absolute;left:0;top:100px;width:590px;height:365px;object-fit:contain\"><div style=\"position:absolute;left:620px;top:95px;width:308px;visibility:hidden\"><ul><li>A mixture-of-experts LLM.</li><li>57 released checkpoints.</li><li>18.2 trillion training tokens.</li></ul><p style=\"font-size:20px;line-height:1.4;margin-top:28px\">Different parameter groups use Muon- and Adam-family updates.</p></div><p style=\"position:absolute;left:0;top:485px;width:928px;text-align:center;font-size:28px\">What makes optimization work at this scale?</p>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-6-marin-outlook-reveal",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Outlook: modern optimization of LLMs",
+    "method": "outlook",
+    "html": "<p style=\"font-size:28px;margin:0\">Marin “Mochi” 535B-A23B</p><p style=\"font-size:20px;color:#555;margin:8px 0 20px\">Open pre-training checkpoints · Open Athena · 17 November 2026</p><img src=\"../muon-polar/assets/mochi-training-checkpoints.svg\" alt=\"Open Athena original plot: Mochi training loss over 18.2 trillion tokens and the released checkpoints\" style=\"position:absolute;left:0;top:100px;width:590px;height:365px;object-fit:contain\"><div style=\"position:absolute;left:620px;top:95px;width:308px;visibility:visible\"><ul><li>A mixture-of-experts LLM.</li><li>57 released checkpoints.</li><li>18.2 trillion training tokens.</li></ul><p style=\"font-size:20px;line-height:1.4;margin-top:28px\">Different parameter groups use Muon- and Adam-family updates.</p></div><p style=\"position:absolute;left:0;top:485px;width:928px;text-align:center;font-size:28px\">What makes optimization work at this scale?</p>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-6-landscape-intermezzo",
+    "part": 6,
+    "after": "part-6-page-027",
+    "title": "Landscapes",
+    "method": "section-transition",
+    "html": "<div style=\"padding-top:135px;text-align:center\"><p style=\"font-size:32px;margin:0 0 45px\">Geometry of trained neural networks</p><p style=\"font-size:28px;line-height:1.4\">How are solutions connected in parameter space?</p><p style=\"font-size:24px;margin-top:55px;color:#555\">Architecture · basins · permutation symmetry</p></div>"
+  },
+  {
+    "id": "part-2-your-approach",
+    "part": 2,
+    "after": "part-2-page-003",
+    "title": "Black-box optimization",
+    "method": "question",
+    "html": "<div style=\"position:absolute;left:24px;top:44px;width:880px;font-size:24px;line-height:1.4;text-align:center\">You can evaluate \\(f(\\mathbf x)\\), but have no gradients.<br>You have a limited number of function evaluations.</div><div style=\"position:absolute;left:24px;top:180px;width:880px;font-size:28px;line-height:1.4;text-align:center\">How would you solve this problem?</div><div style=\"position:absolute;left:24px;top:270px;width:880px;font-size:28px;line-height:1.4;text-align:center\">Where would you evaluate first?<br>How would you decide what to try next?</div><aside class=\"notes\">Pause here and invite suggestions before showing the different sampling approaches. Ask students to explain why they would spend evaluations in their proposed way. Do not reveal or list the candidate methods on this slide.</aside>"
+  },
+  {
+    "id": "part-2-lipschitz-envelope",
+    "part": 2,
+    "after": "part-2-page-041",
+    "title": "Lipschitz continuity",
+    "method": "lipschitz-envelope",
+    "src": "../lipschitz/envelope.html",
+    "iframeTitle": "Non-convex function and moving Lipschitz envelope"
+  },
+  {
+    "id": "part-2-sample-features-bridge",
+    "part": 2,
+    "after": "part-2-page-055",
+    "title": "Landscape features from samples",
+    "method": "question",
+    "html": "<div style=\"position:absolute;left:24px;top:80px;width:880px;font-size:24px;line-height:1.4;text-align:center\">DIRECT and Bayesian optimization are useful when the dimension and evaluation budget permit.</div><div style=\"position:absolute;left:24px;top:220px;width:880px;font-size:28px;line-height:1.4;text-align:center\">In higher dimensions, what can a first sample<br>tell us about the landscape?</div><div style=\"position:absolute;left:24px;top:350px;width:880px;font-size:24px;line-height:1.4;text-align:center\">Estimate useful characteristics of the function,<br>then use what we learn to guide further search.</div><aside class=\"notes\">This is the role of landscape fingerprints: approximate sample-based characteristics, not a complete reconstruction. The distinction is practical rather than a hard dimensional cutoff. Estimation itself consumes evaluations and carries uncertainty.</aside>"
+  },
+  {
+    "id": "part-2-multifunnel-question",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "Multiple funnels",
+    "method": "question",
+    "html": "<div style=\"position:absolute;left:24px;top:120px;width:880px;font-size:28px;line-height:1.4;text-align:center\">What if one adaptive search<br>concentrates in the wrong funnel?</div><div style=\"position:absolute;left:24px;top:280px;width:880px;font-size:24px;line-height:1.4;text-align:center\">Learning a useful local search distribution<br>does not guarantee that we have found the best basin.</div>"
+  },
+  {
+    "id": "part-2-multifunnel-runs",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "Parallel searches and restarts",
+    "method": "multi-run",
+    "html": "<div style=\"position:absolute;left:8px;top:10px;width:490px;height:490px\"><img src=\"../cosmetic-cleanup/assets/multifunnel-populations.png\" alt=\"Original course illustration of several search populations in different regions\" style=\"width:490px!important;height:490px!important;object-fit:contain;margin:0!important\"/></div><div style=\"position:absolute;left:530px;top:55px;width:360px;font-size:24px;line-height:1.35\"><p>Explore more than one basin.</p><ul><li>Run several searches from different starting points.</li><li>Or restart a search with a new initialization.</li><li style=\"visibility:hidden\">Share the total evaluation budget across runs; compare their best observed values.</li></ul></div><p style=\"position:absolute;left:530px;top:430px;width:360px;font-size:20px;color:#555;visibility:hidden\">Parallel runs can reduce wall-clock time when resources are available. They still consume evaluations.</p><aside class=\"notes\">Close the chapter by reconnecting sampling and adaptation to multi-funnel structure. Independent restarts and parallel runs need not exchange information. Neither finite restarts nor several populations guarantee global optimality. Compare under a shared total evaluation budget; distinguish total evaluations from elapsed time. Original parallel-CMA-ES illustration, Part II PDF page 103.</aside>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-2-multifunnel-runs-reveal",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "Parallel searches and restarts",
+    "method": "multi-run",
+    "html": "<div style=\"position:absolute;left:8px;top:10px;width:490px;height:490px\"><img src=\"../cosmetic-cleanup/assets/multifunnel-populations.png\" alt=\"Original course illustration of several search populations in different regions\" style=\"width:490px!important;height:490px!important;object-fit:contain;margin:0!important\"/></div><div style=\"position:absolute;left:530px;top:55px;width:360px;font-size:24px;line-height:1.35\"><p>Explore more than one basin.</p><ul><li>Run several searches from different starting points.</li><li>Or restart a search with a new initialization.</li><li style=\"visibility:visible\">Share the total evaluation budget across runs; compare their best observed values.</li></ul></div><p style=\"position:absolute;left:530px;top:430px;width:360px;font-size:20px;color:#555;visibility:visible\">Parallel runs can reduce wall-clock time when resources are available. They still consume evaluations.</p><aside class=\"notes\">Close the chapter by reconnecting sampling and adaptation to multi-funnel structure. Independent restarts and parallel runs need not exchange information. Neither finite restarts nor several populations guarantee global optimality. Compare under a shared total evaluation budget; distinguish total evaluations from elapsed time. Original parallel-CMA-ES illustration, Part II PDF page 103.</aside>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-2-animation-ipop",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "IPOP-CMA-ES: increasing populations",
+    "method": "ipop",
+    "src": "../blackbox-revision/ipop-demo.html",
+    "iframeTitle": "IPOP-CMA-ES restart trajectories and loss history on Rastrigin"
+  },
+  {
+    "id": "part-2-cma-hyperparameters-paper",
+    "title": "CMA-ES for hyperparameter tuning",
+    "html": "<img src=\"../cosmetic-cleanup/assets/chapter2/loshchilov-hutter-head.png\" alt=\"Original Loshchilov and Hutter paper header and abstract\" style=\"display:block;width:700px;height:auto;margin:0 auto 18px\"><p style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0\">A black-box evaluation trains a network and returns its validation error.</p>",
+    "part": 2,
+    "after": "part-2-page-094",
+    "method": "hyperparameter-example",
+    "notes": "Restored from original Part II pages116 and118. Loshchilov and Hutter (2016), CMA-ES for Hyperparameter Optimization of Deep Neural Networks, ICLR workshop, arxiv1604.07269. Figure2 compares sequential5-minute evaluations with parallel30-minute evaluations; budgets differ and curves are not directly interchangeable."
+  },
+  {
+    "id": "part-2-cma-hyperparameters-table",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "The hyperparameter search space",
+    "method": "hyperparameter-table",
+    "html": "<img src=\"../cosmetic-cleanup/assets/chapter2/cma-hyperparameter-table.png\" alt=\"Original hyperparameter table with transformations and ranges\" style=\"display:block;height:540px;width:auto;max-width:912px;margin:0 auto\"><p style=\"font:18px/1.3 CourseSans,Avenir,Arial,sans-serif;color:#666;margin:12px 0 0;text-align:center\">Search coordinates are transformed into training hyperparameters.<br>Logarithmic scales span orders of magnitude; the Adam and Adadelta rows are alternatives.</p>",
+    "notes": "Original Table1, Loshchilov and Hutter2016. Coordinate transformations and ranges retained. Integer settings require rounding. Optimizer-specific row blocks are alternatives."
+  },
+  {
+    "id": "part-2-cma-hyperparameters-results",
+    "title": "CMA-ES for hyperparameter tuning",
+    "html": "<img src=\"../cosmetic-cleanup/assets/chapter2/cma-hyperparameter-results.png\" alt=\"Original MNIST hyperparameter-optimization comparison, Figure 2\" style=\"display:block;width:900px;height:auto;margin:0 auto 24px\"><ul style=\"padding-left:28px;margin:0\"><li style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0 0 18px\">Tune a CNN’s hyperparameters on MNIST; the parallel experiment uses 30 GPUs.</li><li style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0\">Compare validation error against evaluations and training budget. These results illustrate this setup, not a universal ranking.</li></ul>",
+    "part": 2,
+    "after": "part-2-page-094",
+    "method": "hyperparameter-example",
+    "notes": "Restored from original Part II pages116 and118. Loshchilov and Hutter (2016), CMA-ES for Hyperparameter Optimization of Deep Neural Networks, ICLR workshop, arxiv1604.07269. Figure2 compares sequential5-minute evaluations with parallel30-minute evaluations; budgets differ and curves are not directly interchangeable."
+  },
+  {
+    "id": "part-2-es-at-scale",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "ES at scale",
+    "method": "paper-summary",
+    "html": "<img src=\"../blackbox-revision/es-scale/paper-head.png\" alt=\"Paper title and authors: Evolution Strategies at Scale\" style=\"position:absolute;left:124px;top:0;width:680px!important;height:163px!important;object-fit:contain;margin:0!important\"><img src=\"../blackbox-revision/es-scale/figure-1.png\" alt=\"Figure 1: conciseness reward versus KL divergence, comparing ES and GRPO\" style=\"position:absolute;left:0;top:190px;width:510px!important;height:303px!important;object-fit:contain;margin:0!important\"><div style=\"position:absolute;left:545px;top:190px;width:375px;font-size:21px;line-height:1.3\"><ul style=\"margin:0;padding-left:25px;font-size:21px;line-height:1.3\"><li style=\"font-size:21px;line-height:1.3;margin:0 0 17px\">LLM fine-tuning at <strong>billion-parameter scale</strong>: optimize all weights using Gaussian perturbations and reward evaluations, without backpropagation.</li><li style=\"font-size:21px;line-height:1.3;margin:0 0 17px\">Small populations: 30 candidates in the reasoning experiments; regenerate noise from seeds to save memory.</li><li style=\"font-size:21px;line-height:1.3;margin:0\">Figure 1: ES finds a better reward–divergence trade-off in this conciseness experiment, without a KL penalty.</li></ul></div><p style=\"position:absolute;left:0;top:515px;width:520px;font-size:17px;line-height:1.3;margin:0;color:#555\">Figure 1 · Higher reward and lower KL divergence are better.<br>Blue: ES Pareto front; black: GRPO Pareto front.</p><aside class=\"notes\">Attached paper, Qiu et al., ICML 2026. Fixed-covariance Gaussian ES, not full-covariance CMA-ES. Figure 1 concerns conciseness fine-tuning of Qwen2.5-7B; reported empirical superiority is specific to this comparison. Thirty candidates is the population in the Countdown reasoning experiments, not a universal setting for every experiment.</aside>"
+  },
+  {
+    "id": "part-2-take-home-1",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<ul><li style=\"visibility:visible\">Choose designs, DIRECT or Bayesian optimization with dimension and evaluation cost in mind.</li><li style=\"visibility:hidden\">Use a first sample to estimate landscape characteristics, then adapt further search.</li><li style=\"visibility:hidden\">GaA and CMA-ES learn useful sampling scales and directions.</li><li style=\"visibility:hidden\">Explore multiple basins using parallel searches or restarts under one total budget.</li></ul>",
+    "sameLogicalAsPrevious": false
+  },
+  {
+    "id": "part-2-take-home-2",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<ul><li style=\"visibility:visible\">Choose designs, DIRECT or Bayesian optimization with dimension and evaluation cost in mind.</li><li style=\"visibility:visible\">Use a first sample to estimate landscape characteristics, then adapt further search.</li><li style=\"visibility:hidden\">GaA and CMA-ES learn useful sampling scales and directions.</li><li style=\"visibility:hidden\">Explore multiple basins using parallel searches or restarts under one total budget.</li></ul>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-2-take-home-3",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<ul><li style=\"visibility:visible\">Choose designs, DIRECT or Bayesian optimization with dimension and evaluation cost in mind.</li><li style=\"visibility:visible\">Use a first sample to estimate landscape characteristics, then adapt further search.</li><li style=\"visibility:visible\">GaA and CMA-ES learn useful sampling scales and directions.</li><li style=\"visibility:hidden\">Explore multiple basins using parallel searches or restarts under one total budget.</li></ul>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-2-take-home-4",
+    "part": 2,
+    "after": "part-2-page-094",
+    "title": "Take-home messages",
+    "method": "take-home",
+    "html": "<ul><li style=\"visibility:visible\">Choose designs, DIRECT or Bayesian optimization with dimension and evaluation cost in mind.</li><li style=\"visibility:visible\">Use a first sample to estimate landscape characteristics, then adapt further search.</li><li style=\"visibility:visible\">GaA and CMA-ES learn useful sampling scales and directions.</li><li style=\"visibility:visible\">Explore multiple basins using parallel searches or restarts under one total budget.</li></ul>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-3-rosenbrock-gradient",
+    "part": 3,
+    "after": "part-3-page-005",
+    "title": "Gradient and curvature",
+    "method": "derivatives",
+    "layout": "derivative-intro",
+    "html": "<ul style=\"margin:0;padding-left:28px;font-size:22px;line-height:1.3\"><li style=\"margin:0 0 9px;visibility:visible\">The gradient of the function is available.</li><li style=\"margin:0 0 9px;visibility:visible\">The function can be high-dimensional.</li><li style=\"margin:0 0 9px;visibility:visible\">Higher-order information may also be available.</li></ul><div style=\"position:absolute;left:0;top:155px;width:912px;text-align:center;font-size:23px;visibility:visible\">\\(f(\\mathbf x)=(1-x_1)^2+100(x_2-x_1^2)^2,\\qquad \\mathbf x\\in\\mathbb R^2.\\)</div><img src=\"../gradient-animations/rosenbrock-gradient.svg\" style=\"position:absolute;left:0;top:205px;width:390px!important;height:330px!important;object-fit:contain;visibility:visible\"><div style=\"position:absolute;left:410px;top:210px;width:490px;visibility:visible\"><p style=\"margin:0 0 8px;font-size:23px\">Gradient: local slope</p><div style=\"font-size:21px\">\\[\\nabla f(\\mathbf x)=\\begin{pmatrix}\\frac{\\partial f}{\\partial x_1}\\\\[3pt]\\frac{\\partial f}{\\partial x_2}\\end{pmatrix}=\\begin{pmatrix}2(x_1-1)-400x_1(x_2-x_1^2)\\\\200(x_2-x_1^2)\\end{pmatrix}.\\]</div><p style=\"font-size:20px;margin:5px 0\">\\(-\\nabla f(\\mathbf x)\\): steepest local decrease.</p></div><p style=\"position:absolute;left:0;top:540px;width:912px;text-align:center;font-size:21px;visibility:hidden\">\\(f(\\mathbf x+\\mathbf s)\\approx f(\\mathbf x)+\\nabla f(\\mathbf x)^\\top\\mathbf s+\\tfrac12\\mathbf s^\\top\\mathbf H(\\mathbf x)\\mathbf s.\\)</p>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-3-rosenbrock-derivatives",
+    "part": 3,
+    "after": "part-3-page-005",
+    "title": "Gradient and curvature",
+    "method": "derivatives",
+    "layout": "derivative-intro",
+    "html": "<ul style=\"margin:0;padding-left:28px;font-size:22px;line-height:1.3\"><li style=\"margin:0 0 9px;visibility:visible\">The gradient of the function is available.</li><li style=\"margin:0 0 9px;visibility:visible\">The function can be high-dimensional.</li><li style=\"margin:0 0 9px;visibility:visible\">Higher-order information may also be available.</li></ul><div style=\"position:absolute;left:0;top:155px;width:912px;text-align:center;font-size:23px;visibility:visible\">\\(f(\\mathbf x)=(1-x_1)^2+100(x_2-x_1^2)^2,\\qquad \\mathbf x\\in\\mathbb R^2.\\)</div><img src=\"../gradient-animations/rosenbrock-hessian.svg\" style=\"position:absolute;left:0;top:205px;width:390px!important;height:330px!important;object-fit:contain;visibility:visible\"><div style=\"position:absolute;left:410px;top:210px;width:490px;visibility:visible\"><p style=\"margin:0 0 5px;font-size:23px\">Hessian: local curvature</p><div style=\"font-size:21px\">\\[\\mathbf H(\\mathbf x)=\\nabla^2f(\\mathbf x)=\\left[\\frac{\\partial^2 f}{\\partial x_i\\partial x_j}\\right]_{i,j=1}^2\\]\\[=\\begin{pmatrix}1200x_1^2-400x_2+2&-400x_1\\\\-400x_1&200\\end{pmatrix}.\\]<div style=\"font-size:21px\">At \\(\\mathbf x=(-0.8,\\,0.5)^\\top\\):\\[\\mathbf H(\\mathbf x)=\\begin{pmatrix}570&320\\\\320&200\\end{pmatrix}.\\]</div></div><p style=\"font-size:20px;margin:5px 0\">Eigenvectors: principal directions.<br>Eigenvalues: curvature in these directions.</p></div><p style=\"position:absolute;left:0;top:540px;width:912px;text-align:center;font-size:21px;visibility:visible\">\\(f(\\mathbf x+\\mathbf s)\\approx f(\\mathbf x)+\\nabla f(\\mathbf x)^\\top\\mathbf s+\\tfrac12\\mathbf s^\\top\\mathbf H(\\mathbf x)\\mathbf s.\\)</p>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-3-lipschitz-gradient",
+    "part": 3,
+    "after": "part-3-page-006",
+    "title": "First-order optimization",
+    "method": "smoothness",
+    "src": "../lipschitz/gradient.html",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-4-strong-convexity-at-iterates",
+    "part": 4,
+    "after": "part-4-page-048",
+    "title": "Strong convexity: contraction in one step",
+    "method": "proof",
+    "html": "<style>.clear-proof{font:22px/1.35 CourseSans,Avenir,Arial,sans-serif}.clear-proof>p{margin:0 0 18px!important}.clear-proof-row{display:grid;grid-template-columns:175px 1fr;column-gap:20px;min-height:100px;align-items:center;border-top:1px solid #d9dddf}.clear-proof-row .equation{font-size:21px!important;margin:0!important}.clear-proof-row mjx-container[display=\"true\"]{margin:0!important}.clear-proof-label{font-size:22px}.clear-proof-result{margin-top:14px;padding:12px 16px;background:#fff0df;font-size:24px;text-align:center}</style><div class=\"clear-proof\"><p>Assume convexity, \\(L\\)-smoothness and \\(\\mu\\)-strong convexity.<br>Choose \\(\\eta=1/L;\\) keep the same \\(e_t,D_t,R\\).</p><div class=\"clear-proof-row\" style=\"visibility:visible\"><div class=\"clear-proof-label\">1. Expand the squared distance</div><div class=\"equation\">\\[D_{t+1}=D_t-2\\eta\\mathbf g_t^\\top(\\mathbf x_t-\\mathbf x^\\star)+\\eta^2\\|\\mathbf g_t\\|_2^2.\\]</div></div><div class=\"clear-proof-row\" style=\"visibility:visible\"><div class=\"clear-proof-label\">2. Use strong convexity</div><div style=\"font-size:21px;padding:12px 0\"><div class=\"equation\">\\[f(\\mathbf x^\\star)\\ge f(\\mathbf x_t)+\\mathbf g_t^\\top(\\mathbf x^\\star-\\mathbf x_t)+\\tfrac\\mu2\\|\\mathbf x^\\star-\\mathbf x_t\\|_2^2.\\]</div><div class=\"strong-rearrangement\" style=\"visibility:hidden\"><div class=\"equation\">\\[\\begin{aligned}\\mathbf g_t^\\top(\\mathbf x_t-\\mathbf x^\\star)&\\ge e_t+\\tfrac\\mu2D_t,\\\\[5pt]D_{t+1}&\\le(1-\\mu\\eta)D_t-2\\eta e_t+\\eta^2\\|\\mathbf g_t\\|_2^2.\\end{aligned}\\]</div></div></div></div><div class=\"clear-proof-row\" style=\"visibility:hidden\"><div class=\"clear-proof-label\">3. Use smoothness</div><div class=\"equation\">\\[\\begin{aligned}\\eta^2\\|\\mathbf g_t\\|_2^2&\\le2\\eta(e_t-e_{t+1}),\\\\ -2\\eta e_t+\\eta^2\\|\\mathbf g_t\\|_2^2&\\le-2\\eta e_{t+1}\\le0.\\end{aligned}\\]</div></div><div class=\"clear-proof-result\" style=\"visibility:hidden\">\\(\\boxed{D_{t+1}\\le(1-\\mu/L)D_t.}\\)</div></div>",
+    "sameLogicalAsPrevious": true
+  },
+  {
+    "id": "part-4-adaptive-step-sizes",
+    "part": 4,
+    "after": "part-4-page-050",
+    "title": "Adaptive step sizes",
+    "method": "step-sizes",
+    "html": "<div class=\"theory-copy\"><ul><li>So far, we chose a constant step size using assumptions about the function.</li><li>We can instead choose a step size \\(\\eta_t\\) at each iteration:</li></ul><div class=\"equation\">\\[\\mathbf x_{t+1}=\\mathbf x_t-\\eta_t\\mathbf g_t,\\qquad\\mathbf g_t=\\nabla f(\\mathbf x_t).\\]</div><ul><li>A schedule specifies \\(\\eta_t\\) in advance, for example a decreasing sequence.</li><li>An adaptive rule uses information from the current iteration, such as function values or the gradient.</li><li>Line search tests candidate step sizes. The Polyak rule uses the objective error and gradient norm.</li></ul><p style=\"font-size:20px;color:#555;margin-top:20px\">Here \\(\\eta_t\\) is one scalar for the whole gradient.</p></div>"
+  },
+  {
+    "id": "part-6-bottou-rcv1",
+    "part": 6,
+    "after": "part-6-page-005",
+    "title": "Linear SVMs: optimization and prediction",
+    "method": "paper-experiment",
+    "html": "<p style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0 0 20px\">RCV1: 781,265 training documents and 47,152 sparse features.</p><img src=\"../cosmetic-cleanup/assets/chapter6/bottou-figure-1.png\" alt=\"Bottou 2010 Figure 1\" style=\"display:block;width:890px;height:auto;max-height:400px;object-fit:contain;margin:0 auto 24px\"><p style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0\">Test performance levels off before very high optimization accuracy becomes useful.</p>",
+    "notes": "Original Figure 1, Bottou (2010), COMPSTAT. Historical benchmark on the reported hardware and implementations; not a universal speed guarantee. Source notation retained inside plots. https://leon.bottou.org/publications/pdf/compstat-2010.pdf"
+  },
+  {
+    "id": "part-6-bottou-alpha",
+    "part": 6,
+    "after": "part-6-page-005",
+    "title": "Averaged SGD for a linear SVM",
+    "method": "paper-experiment",
+    "html": "<p style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0 0 20px\">ALPHA: squared hinge loss; 100,000 examples and 500 variables.</p><img src=\"../cosmetic-cleanup/assets/chapter6/bottou-figure-2.png\" alt=\"Bottou 2010 Figure 2\" style=\"display:block;width:890px;height:auto;max-height:400px;object-fit:contain;margin:0 auto 24px\"><p style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0\">ASGD averages successive parameter vectors. In this experiment, it approaches its best test performance after one pass.</p>",
+    "notes": "Original Figure 2, Bottou (2010), COMPSTAT. Historical benchmark on the reported hardware and implementations; not a universal speed guarantee. Source notation retained inside plots. https://leon.bottou.org/publications/pdf/compstat-2010.pdf"
+  },
+  {
+    "id": "part-6-bottou-crf",
+    "part": 6,
+    "after": "part-6-page-005",
+    "title": "Stochastic optimization beyond SVMs",
+    "method": "paper-experiment",
+    "html": "<p style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0 0 20px\">CoNLL-2000: conditional random field for sequence labeling.</p><img src=\"../cosmetic-cleanup/assets/chapter6/bottou-figure-3.png\" alt=\"Bottou 2010 Figure 3\" style=\"display:block;width:890px;height:auto;max-height:400px;object-fit:contain;margin:0 auto 24px\"><p style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0\">SGDQN performs best here; averaging is not uniformly better across these experiments.</p>",
+    "notes": "Original Figure 3, Bottou (2010), COMPSTAT. Historical benchmark on the reported hardware and implementations; not a universal speed guarantee. Source notation retained inside plots. https://leon.bottou.org/publications/pdf/compstat-2010.pdf"
+  },
+  {
+    "id": "part-6-decentralized-optimization",
+    "part": 6,
+    "after": "part-6-page-055",
+    "title": "What we have not covered: Decentralized optimization",
+    "method": "paper-review",
+    "html": "<img src=\"../cosmetic-cleanup/assets/chapter6/federated-review-head.png\" alt=\"Kairouz et al., including Sebastian U. Stich: Advances and Open Problems in Federated Learning\" style=\"display:block;width:600px;height:auto;margin:0 auto 20px\"><ul style=\"padding-left:28px;margin:0\"><li style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0 0 16px\">Train across clients while the data remain local.</li><li style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0 0 16px\">Local updates must cope with heterogeneous data and limited communication.</li><li style=\"font:24px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0 0 16px\">Federated learning often uses a central server; fully decentralized methods exchange updates peer to peer.</li></ul>",
+    "notes": "Kairouz et al. (2021), Advances and Open Problems in Federated Learning, Foundations and Trends in Machine Learning 14(1–2), 1–210. Sebastian U. Stich is a coauthor. Federated data locality is distinct from fully decentralized communication topology. https://doi.org/10.1561/2200000083"
+  },
+  {
+    "id": "part-6-further-reading-prompts",
+    "part": 6,
+    "after": "part-6-page-055",
+    "title": "Further reading",
+    "method": "reading-prompts",
+    "html": "<div style=\"margin:0 0 28px\"><p style=\"font:24px/1.3 CourseSans,Avenir,Arial,sans-serif;margin:0 0 9px\"><strong>Claude</strong></p><p style=\"font:22px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0\">“Using these lecture notes, help me understand [topic]. State the assumptions, explain the main idea, and work through one example in the course notation. Suggest three further readings with verifiable links.”</p></div><div style=\"margin:0 0 28px\"><p style=\"font:24px/1.3 CourseSans,Avenir,Arial,sans-serif;margin:0 0 9px\"><strong>Codex</strong></p><p style=\"font:22px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0\">“Using these lecture notes, build a small reproducible experiment comparing [methods] on [problem]. Match the formulas and notation, plot objective value against iterations and evaluations, and explain the results.”</p></div><div style=\"margin:0 0 28px\"><p style=\"font:24px/1.3 CourseSans,Avenir,Arial,sans-serif;margin:0 0 9px\"><strong>Gemini</strong></p><p style=\"font:22px/1.35 CourseSans,Avenir,Arial,sans-serif;margin:0\">“Find primary sources on [topic] that extend these lecture notes. Compare their assumptions, results and limitations. Give links and publication dates; distinguish established results from open questions.”</p></div>"
+  }
+]

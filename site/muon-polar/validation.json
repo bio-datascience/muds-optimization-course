@@ -1,0 +1,103 @@
+{
+  "rows": [
+    {
+      "id": "part-6-muon-llm",
+      "number": "6.25",
+      "mathErrors": 0,
+      "box": [
+        928,
+        928,
+        590,
+        590
+      ],
+      "images": []
+    },
+    {
+      "id": "part-6-muon-llm-reveal",
+      "number": "6.25",
+      "mathErrors": 0,
+      "box": [
+        928,
+        928,
+        590,
+        590
+      ],
+      "images": []
+    },
+    {
+      "id": "part-6-muon-polar",
+      "number": "6.26",
+      "mathErrors": 0,
+      "box": [
+        928,
+        928,
+        590,
+        590
+      ],
+      "images": []
+    },
+    {
+      "id": "part-6-muon-polar-reveal",
+      "number": "6.26",
+      "mathErrors": 0,
+      "box": [
+        928,
+        928,
+        590,
+        590
+      ],
+      "images": []
+    },
+    {
+      "id": "part-6-polar-express",
+      "number": "6.27",
+      "mathErrors": 0,
+      "box": [
+        928,
+        928,
+        590,
+        590
+      ],
+      "images": []
+    },
+    {
+      "id": "part-6-polar-express-reveal",
+      "number": "6.27",
+      "mathErrors": 0,
+      "box": [
+        928,
+        928,
+        590,
+        590
+      ],
+      "images": []
+    },
+    {
+      "id": "part-6-polar-llm-results",
+      "number": "6.28",
+      "mathErrors": 0,
+      "box": [
+        928,
+        928,
+        590,
+        590
+      ],
+      "images": [
+        [
+          true,
+          537
+        ],
+        [
+          true,
+          321
+        ]
+      ]
+    }
+  ],
+  "errors": [],
+  "controls": [
+    "Same normalized starting spectrum for all methods.\n\nMaximum error from 1:\n2.41e-6\n\nIteration-dependent quintics from the pinned authors’ implementation.",
+    "Same normalized starting spectrum for all methods.\n\nMaximum error from 1:\n9.01e-1\n\nClassical cubic: 1.5s − 0.5s³.",
+    "Same normalized starting spectrum for all methods.\n\nMaximum error from 1:\n2.82e-1\n\nFixed quintic: 3.4445s − 4.7750s³ + 2.0315s⁵; not exact polar convergence."
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "checks": [
+    "Linear oracle verified against all vertices",
+    "Convex-combination update agrees with formula",
+    "All iterates feasible",
+    "Step fractions in [0,1]",
+    "Exact quadratic line search decreases loss",
+    "FW gap bounds suboptimality on this convex quadratic"
+  ],
+  "runs": [
+    {
+      "domain": "offset",
+      "start": "boundary",
+      "rule": "line-search",
+      "iterations": 240,
+      "initial": 181.34889757800974,
+      "final": 2.6455309295083307e-08,
+      "final_gap": 0.0018568098378902484
+    },
+    {
+      "domain": "offset",
+      "start": "boundary",
+      "rule": "diminishing",
+      "iterations": 7,
+      "initial": 181.34889757800974,
+      "final": 8.475444935768967e-31,
+      "final_gap": 9.160802557086786e-14
+    },
+    {
+      "domain": "offset",
+      "start": "center",
+      "rule": "line-search",
+      "iterations": 1,
+      "initial": 275.04391321673825,
+      "final": 0.0,
+      "final_gap": 0.0
+    },
+    {
+      "domain": "offset",
+      "start": "center",
+      "rule": "diminishing",
+      "iterations": 7,
+      "initial": 275.04391321673825,
+      "final": 8.475444935768967e-31,
+      "final_gap": 9.160802557086786e-14
+    },
+    {
+      "domain": "offset",
+      "start": "original",
+      "rule": "line-search",
+      "iterations": 240,
+      "initial": 592.373679641907,
+      "final": 2.080375631570848e-09,
+      "final_gap": 0.00039729538599540777
+    },
+    {
+      "domain": "offset",
+      "start": "original",
+      "rule": "diminishing",
+      "iterations": 7,
+      "initial": 592.373679641907,
+      "final": 8.475444935768967e-31,
+      "final_gap": 9.160802557086786e-14
+    },
+    {
+      "domain": "centered",
+      "start": "boundary",
+      "rule": "line-search",
+      "iterations": 56,
+      "initial": 116.60478104935595,
+      "final": 2.1909510895061705e-23,
+      "final_gap": 8.014761099834838e-11
+    },
+    {
+      "domain": "centered",
+      "start": "boundary",
+      "rule": "diminishing",
+      "iterations": 240,
+      "initial": 116.60478104935595,
+      "final": 0.04261970728724787,
+      "final_gap": 20.627938327027977
+    },
+    {
+      "domain": "centered",
+      "start": "center",
+      "rule": "line-search",
+      "iterations": 0,
+      "initial": 0.0,
+      "final": 0.0,
+      "final_gap": 0.0
+    },
+    {
+      "domain": "centered",
+      "start": "center",
+      "rule": "diminishing",
+      "iterations": 0,
+      "initial": 0.0,
+      "final": 0.0,
+      "final_gap": 0.0
+    },
+    {
+      "domain": "centered",
+      "start": "original",
+      "rule": "line-search",
+      "iterations": 53,
+      "initial": 592.373679641907,
+      "final": 7.532059617158762e-24,
+      "final_gap": 4.699277751250129e-11
+    },
+    {
+      "domain": "centered",
+      "start": "original",
+      "rule": "diminishing",
+      "iterations": 240,
+      "initial": 592.373679641907,
+      "final": 0.04261970728724787,
+      "final_gap": 20.627938327027977
+    }
+  ]
+}

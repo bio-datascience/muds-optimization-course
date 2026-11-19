@@ -1,0 +1,165 @@
+{
+  "objective": "f(x)=1/2||Ax-b||^2, A=diag(sqrt(2),sqrt(70))R^T; b=A(4,1)",
+  "checks": [
+    "Least-squares Hessian equals the earlier rotated quadratic Hessian",
+    "Exact L1 feasibility",
+    "Adaptive-threshold Euclidean projection formula",
+    "Projection variational inequality at diamond vertices",
+    "FW linear oracle checked against all diamond vertices",
+    "FW convex-combination formula",
+    "Nonincreasing losses with declared step choices",
+    "Independent constrained optimum by minimizing all four edges or using feasible unconstrained minimum"
+  ],
+  "runs": [
+    {
+      "method": "pgd",
+      "radius": 1.0,
+      "steps": 300,
+      "initial": 106.74388548399199,
+      "final": 43.22292752187157,
+      "optimum": [
+        0.1920656829851013,
+        -0.8079343170148987
+      ],
+      "final_coefficients": [
+        0.19206584415290062,
+        -0.8079341558470996
+      ]
+    },
+    {
+      "method": "fw",
+      "radius": 1.0,
+      "steps": 2,
+      "initial": 106.74388548399199,
+      "final": 43.22292752187148,
+      "optimum": [
+        0.1920656829851013,
+        -0.8079343170148987
+      ],
+      "final_coefficients": [
+        0.1920656829851013,
+        -0.8079343170148987
+      ]
+    },
+    {
+      "method": "pgd",
+      "radius": 2.0,
+      "steps": 54,
+      "initial": 106.74388548399199,
+      "final": 10.835603131776923,
+      "optimum": [
+        2.0,
+        0.0
+      ],
+      "final_coefficients": [
+        2.0,
+        -0.0
+      ]
+    },
+    {
+      "method": "fw",
+      "radius": 2.0,
+      "steps": 2,
+      "initial": 106.74388548399199,
+      "final": 10.835603131776923,
+      "optimum": [
+        2.0,
+        0.0
+      ],
+      "final_coefficients": [
+        2.0,
+        0.0
+      ]
+    },
+    {
+      "method": "pgd",
+      "radius": 3.0,
+      "steps": 39,
+      "initial": 106.74388548399199,
+      "final": 2.0360385127254683,
+      "optimum": [
+        2.867730791539909,
+        0.13226920846009088
+      ],
+      "final_coefficients": [
+        2.8677307915351697,
+        0.13226920846483015
+      ]
+    },
+    {
+      "method": "fw",
+      "radius": 3.0,
+      "steps": 3,
+      "initial": 106.74388548399199,
+      "final": 2.0360385127254683,
+      "optimum": [
+        2.867730791539909,
+        0.13226920846009088
+      ],
+      "final_coefficients": [
+        2.867730791539909,
+        0.13226920846009083
+      ]
+    },
+    {
+      "method": "pgd",
+      "radius": 5.0,
+      "steps": 300,
+      "initial": 106.74388548399199,
+      "final": 4.0150632287164254e-07,
+      "optimum": [
+        4.0,
+        1.0
+      ],
+      "final_coefficients": [
+        3.9994955652698687,
+        0.9996165264990784
+      ]
+    },
+    {
+      "method": "fw",
+      "radius": 5.0,
+      "steps": 300,
+      "initial": 106.74388548399199,
+      "final": 0.14543873532572257,
+      "optimum": [
+        4.0,
+        1.0
+      ],
+      "final_coefficients": [
+        3.699815957403008,
+        0.7662135431821456
+      ]
+    },
+    {
+      "method": "pgd",
+      "radius": 6.0,
+      "steps": 300,
+      "initial": 106.74388548399199,
+      "final": 4.0150632287164254e-07,
+      "optimum": [
+        4.0,
+        1.0
+      ],
+      "final_coefficients": [
+        3.9994955652698687,
+        0.9996165264990784
+      ]
+    },
+    {
+      "method": "fw",
+      "radius": 6.0,
+      "steps": 300,
+      "initial": 106.74388548399199,
+      "final": 0.021448610417462523,
+      "optimum": [
+        4.0,
+        1.0
+      ],
+      "final_coefficients": [
+        3.8853641387917115,
+        0.90989583424018
+      ]
+    }
+  ]
+}

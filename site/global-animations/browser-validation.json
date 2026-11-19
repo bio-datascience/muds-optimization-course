@@ -1,0 +1,49 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "method": "direct",
+      "domain": "offset",
+      "frames": 8,
+      "evaluations": 47,
+      "initial": 275.0439132167382,
+      "best": 0.26241780000737286,
+      "height": 614,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "method": "direct",
+      "domain": "centered",
+      "frames": 5,
+      "evaluations": 57,
+      "initial": 0,
+      "best": 0,
+      "height": 614,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "method": "bo",
+      "domain": "offset",
+      "frames": 33,
+      "evaluations": 33,
+      "initial": 275.0439132167382,
+      "best": 0.020729738853218854,
+      "height": 614,
+      "width": 984,
+      "mathErrors": 0
+    },
+    {
+      "method": "bo",
+      "domain": "centered",
+      "frames": 34,
+      "evaluations": 34,
+      "initial": 0,
+      "best": 0,
+      "height": 614,
+      "width": 984,
+      "mathErrors": 0
+    }
+  ]
+}

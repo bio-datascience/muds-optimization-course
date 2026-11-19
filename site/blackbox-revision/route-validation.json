@@ -1,0 +1,66 @@
+{
+  "states": 423,
+  "order": [
+    {
+      "id": "part-2-page-019",
+      "index": 127
+    },
+    {
+      "id": "part-2-lipschitz-envelope",
+      "index": 130
+    },
+    {
+      "id": "part-2-page-048",
+      "index": 135
+    },
+    {
+      "id": "part-2-page-051",
+      "index": 137
+    },
+    {
+      "id": "part-2-animation-bo",
+      "index": 142
+    },
+    {
+      "id": "part-2-sample-features-bridge",
+      "index": 143
+    },
+    {
+      "id": "part-2-page-023",
+      "index": 144
+    },
+    {
+      "id": "part-2-page-039",
+      "index": 160
+    },
+    {
+      "id": "part-2-page-058",
+      "index": 161
+    },
+    {
+      "id": "part-2-page-094",
+      "index": 192
+    },
+    {
+      "id": "part-2-multifunnel-question",
+      "index": 193
+    },
+    {
+      "id": "part-2-multifunnel-runs",
+      "index": 194
+    },
+    {
+      "id": "part-2-multifunnel-runs-reveal",
+      "index": 195
+    },
+    {
+      "id": "part-2-take-home-1",
+      "index": 196
+    },
+    {
+      "id": "part-2-take-home-4",
+      "index": 199
+    }
+  ],
+  "errors": 0
+}

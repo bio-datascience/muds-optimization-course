@@ -1,0 +1,95 @@
+{
+  "checks": [
+    "AdamW with zero decay equals Adam",
+    "same seed gives identical sample stream for six methods",
+    "12 noisy landscape/method combinations render",
+    "noise Off works"
+  ],
+  "errors": [],
+  "report": [
+    {
+      "method": "gd",
+      "landscape": "quadratic",
+      "total": 451,
+      "error": "",
+      "math": "xt+1=xt−ηtg^t"
+    },
+    {
+      "method": "newton",
+      "landscape": "quadratic",
+      "total": 451,
+      "error": "",
+      "math": "(Ht+τtI)dt=−∇f(xt)xt+1=xt+ηtdt"
+    },
+    {
+      "method": "bfgs",
+      "landscape": "quadratic",
+      "total": 451,
+      "error": "",
+      "math": "dt=−At∇f(xt)At≈Ht−1"
+    },
+    {
+      "method": "sgd",
+      "landscape": "quadratic",
+      "total": 451,
+      "error": "",
+      "math": "xt+1=xt−ηtg^t"
+    },
+    {
+      "method": "adam",
+      "landscape": "quadratic",
+      "total": 451,
+      "error": "",
+      "math": "xt+1=xt−ηtm^tv^t+εA"
+    },
+    {
+      "method": "adamw",
+      "landscape": "quadratic",
+      "total": 451,
+      "error": "",
+      "math": "xt+1=(1−ηtλ)xt−ηtm^tv^t+εA"
+    },
+    {
+      "method": "gd",
+      "landscape": "rastrigin",
+      "total": 451,
+      "error": "",
+      "math": "xt+1=xt−ηtg^t"
+    },
+    {
+      "method": "newton",
+      "landscape": "rastrigin",
+      "total": 451,
+      "error": "",
+      "math": "(Ht+τtI)dt=−∇f(xt)xt+1=xt+ηtdt"
+    },
+    {
+      "method": "bfgs",
+      "landscape": "rastrigin",
+      "total": 451,
+      "error": "",
+      "math": "dt=−At∇f(xt)At≈Ht−1"
+    },
+    {
+      "method": "sgd",
+      "landscape": "rastrigin",
+      "total": 451,
+      "error": "",
+      "math": "xt+1=xt−ηtg^t"
+    },
+    {
+      "method": "adam",
+      "landscape": "rastrigin",
+      "total": 451,
+      "error": "",
+      "math": "xt+1=xt−ηtm^tv^t+εA"
+    },
+    {
+      "method": "adamw",
+      "landscape": "rastrigin",
+      "total": 451,
+      "error": "",
+      "math": "xt+1=(1−ηtλ)xt−ηtm^tv^t+εA"
+    }
+  ]
+}

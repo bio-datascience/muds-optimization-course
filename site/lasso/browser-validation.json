@@ -1,0 +1,135 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "method": "pgd",
+      "radius": "1",
+      "final": 43.22292752187157,
+      "coefficients": [
+        0.19206584415290062,
+        -0.8079341558470996
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "pgd",
+      "radius": "2",
+      "final": 10.835603131776923,
+      "coefficients": [
+        2,
+        0
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "pgd",
+      "radius": "3",
+      "final": 2.0360385127254683,
+      "coefficients": [
+        2.8677307915351697,
+        0.13226920846483015
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "pgd",
+      "radius": "5",
+      "final": 4.0150632287164254e-7,
+      "coefficients": [
+        3.9994955652698687,
+        0.9996165264990784
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "pgd",
+      "radius": "6",
+      "final": 4.0150632287164254e-7,
+      "coefficients": [
+        3.9994955652698687,
+        0.9996165264990784
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "fw",
+      "radius": "1",
+      "final": 43.22292752187148,
+      "coefficients": [
+        0.1920656829851013,
+        -0.8079343170148987
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "fw",
+      "radius": "2",
+      "final": 10.835603131776923,
+      "coefficients": [
+        2,
+        0
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "fw",
+      "radius": "3",
+      "final": 2.0360385127254683,
+      "coefficients": [
+        2.867730791539909,
+        0.13226920846009083
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "fw",
+      "radius": "5",
+      "final": 0.14543873532572257,
+      "coefficients": [
+        3.699815957403008,
+        0.7662135431821456
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    },
+    {
+      "method": "fw",
+      "radius": "6",
+      "final": 0.021448610417462523,
+      "coefficients": [
+        3.8853641387917115,
+        0.90989583424018
+      ],
+      "height": 617,
+      "width": 984,
+      "mathErrors": 0,
+      "formulas": 3
+    }
+  ]
+}

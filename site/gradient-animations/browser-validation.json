@@ -1,0 +1,123 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "method": "gd",
+      "land": "quadratic",
+      "frames": 321,
+      "initial": 592.373679641907,
+      "final": 1.4218003291409132e-8,
+      "best": 1.4218003291409132e-8,
+      "height": 574
+    },
+    {
+      "method": "newton",
+      "land": "quadratic",
+      "frames": 2,
+      "initial": 592.373679641907,
+      "final": 1.1068616949613171e-28,
+      "best": 1.1068616949613171e-28,
+      "height": 574
+    },
+    {
+      "method": "bfgs",
+      "land": "quadratic",
+      "frames": 10,
+      "initial": 592.373679641907,
+      "final": 4.31850775117895e-22,
+      "best": 4.31850775117895e-22,
+      "height": 574
+    },
+    {
+      "method": "sgd",
+      "land": "quadratic",
+      "frames": 321,
+      "initial": 592.373679641907,
+      "final": 0.0096418641247927,
+      "best": 0.0052322012661763975,
+      "height": 606
+    },
+    {
+      "method": "adam",
+      "land": "quadratic",
+      "frames": 321,
+      "initial": 592.373679641907,
+      "final": 0.17223888905246068,
+      "best": 0.17223888905246068,
+      "height": 606
+    },
+    {
+      "method": "adamw",
+      "land": "quadratic",
+      "frames": 321,
+      "initial": 592.373679641907,
+      "final": 0.0038673488051372664,
+      "best": 0.0036412151315645654,
+      "height": 606
+    },
+    {
+      "method": "gd",
+      "land": "rastrigin",
+      "frames": 11,
+      "initial": 52.5,
+      "final": 7.959662381108174,
+      "best": 7.959662381108174,
+      "height": 574
+    },
+    {
+      "method": "newton",
+      "land": "rastrigin",
+      "frames": 2,
+      "initial": 52.5,
+      "final": 0,
+      "best": 0,
+      "height": 574
+    },
+    {
+      "method": "bfgs",
+      "land": "rastrigin",
+      "frames": 2,
+      "initial": 52.5,
+      "final": 0,
+      "best": 0,
+      "height": 574
+    },
+    {
+      "method": "sgd",
+      "land": "rastrigin",
+      "frames": 321,
+      "initial": 52.5,
+      "final": 7.962178680008687,
+      "best": 7.96216463038758,
+      "height": 606
+    },
+    {
+      "method": "adam",
+      "land": "rastrigin",
+      "frames": 321,
+      "initial": 52.5,
+      "final": 7.960838554102057,
+      "best": 7.959669408266766,
+      "height": 606
+    },
+    {
+      "method": "adamw",
+      "land": "rastrigin",
+      "frames": 321,
+      "initial": 52.5,
+      "final": 7.982656349669616,
+      "best": 7.959839035843746,
+      "height": 606
+    }
+  ],
+  "embedded": [
+    "part-3-animation-gd",
+    "part-3-animation-newton",
+    "part-3-animation-bfgs",
+    "part-6-animation-sgd",
+    "part-6-animation-adam",
+    "part-6-animation-adamw",
+    "part-2-animation-direct",
+    "part-2-animation-bo"
+  ]
+}
