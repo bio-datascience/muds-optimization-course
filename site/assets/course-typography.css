@@ -21,3 +21,6 @@
 
 #part-4-page-035 .content-replacement,#part-4-page-035 .content-replacement p{font-family:CourseSans,Avenir,Arial,sans-serif!important;font-size:24px!important;line-height:1.35!important;}
 #part-4-page-054 .theory-copy>p,#part-4-page-055 .theory-copy>p{font-size:20px!important;line-height:1.3!important;}
+
+/* Uniform original Data Science mark in the upper-right course frame. */
+.reveal .slides section img.course-header-brand{position:absolute!important;left:800px!important;top:0!important;width:224px!important;height:75px!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;object-fit:fill!important;z-index:8!important;pointer-events:none}
