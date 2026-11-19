@@ -1,11 +1,11 @@
 {
   "files": 422,
-  "bytes": 139525659,
+  "bytes": 139501276,
   "unresolved_static_references": [
     "course-v1/vendor/mathjax-tex-svg.js: mathmaps_ie.js",
     "course-v1/vendor/mathjax-tex-svg.js: output/svg/fonts/tex.js",
     "math-cleanup/muds-style.html: mathmaps_ie.js",
     "math-cleanup/muds-style.html: output/svg/fonts/tex.js"
   ],
-  "source_sha256": "c221c44a788e8695f453d38ec1aabadf92bace163475475249cc492144b940fe"
+  "source_sha256": "98e675b99aacd368bc838d2f53c38e5051832fac4d7250ce50e1573850d01c6f"
 }
