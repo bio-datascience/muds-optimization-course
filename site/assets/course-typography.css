@@ -24,3 +24,8 @@
 
 /* Uniform original Data Science mark in the upper-right course frame. */
 .reveal .slides section img.course-header-brand{position:absolute!important;left:800px!important;top:0!important;width:224px!important;height:75px!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;object-fit:fill!important;z-index:8!important;pointer-events:none}
+
+/* One original gray lower frame across all course slides. */
+.reveal .slides>section[data-part]::after{content:"";display:block;position:absolute;left:0;top:735px;width:1024px;height:33px;background:#c9c9c9;z-index:8;pointer-events:none}
+.reveal .slides>section[data-part]>.course-page-number{z-index:9!important;pointer-events:none}
+.reveal .slides>section[data-part]>.course-page-number rect{fill:#c9c9c9!important}
