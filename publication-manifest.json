@@ -1,11 +1,69 @@
 {
   "files": 423,
-  "bytes": 139972908,
+  "bytes": 257921051,
   "unresolved_static_references": [
     "course-v1/vendor/mathjax-tex-svg.js: mathmaps_ie.js",
     "course-v1/vendor/mathjax-tex-svg.js: output/svg/fonts/tex.js",
     "math-cleanup/muds-style.html: mathmaps_ie.js",
     "math-cleanup/muds-style.html: output/svg/fonts/tex.js"
   ],
-  "source_sha256": "01ef51bdb65683a1f30954d43082acb0ae7bc10e3b4f305144dc23b67eaecf38"
+  "source_sha256": "01ef51bdb65683a1f30954d43082acb0ae7bc10e3b4f305144dc23b67eaecf38",
+  "pdf_export": {
+    "course_date": "2026-11-23",
+    "export_date": "2026-11-24",
+    "includes": "Every slide/build stage, including native fragment states; embedded demonstrations are stills with live-slide links.",
+    "total_pages": 445,
+    "total_bytes": 117943583,
+    "source_html_sha256": "01ef51bdb65683a1f30954d43082acb0ae7bc10e3b4f305144dc23b67eaecf38",
+    "chapters": [
+      {
+        "chapter": 1,
+        "pages": 113,
+        "bytes": 40075341,
+        "MB": 40.08,
+        "path": "outputs/course-pdfs/MUDS-Optimization-Chapter-1-all-builds.pdf",
+        "embeddedSlides": 2
+      },
+      {
+        "chapter": 2,
+        "pages": 102,
+        "bytes": 28961672,
+        "MB": 28.96,
+        "path": "outputs/course-pdfs/MUDS-Optimization-Chapter-2-all-builds.pdf",
+        "embeddedSlides": 9
+      },
+      {
+        "chapter": 3,
+        "pages": 46,
+        "bytes": 7533899,
+        "MB": 7.53,
+        "path": "outputs/course-pdfs/MUDS-Optimization-Chapter-3-all-builds.pdf",
+        "embeddedSlides": 4
+      },
+      {
+        "chapter": 4,
+        "pages": 59,
+        "bytes": 7037843,
+        "MB": 7.04,
+        "path": "outputs/course-pdfs/MUDS-Optimization-Chapter-4-all-builds.pdf",
+        "embeddedSlides": 1
+      },
+      {
+        "chapter": 5,
+        "pages": 36,
+        "bytes": 7159081,
+        "MB": 7.16,
+        "path": "outputs/course-pdfs/MUDS-Optimization-Chapter-5-all-builds.pdf",
+        "embeddedSlides": 5
+      },
+      {
+        "chapter": 6,
+        "pages": 89,
+        "bytes": 27175747,
+        "MB": 27.18,
+        "path": "outputs/course-pdfs/MUDS-Optimization-Chapter-6-all-builds.pdf",
+        "embeddedSlides": 8
+      }
+    ]
+  }
 }
